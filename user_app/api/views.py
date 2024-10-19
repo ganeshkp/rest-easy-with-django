@@ -6,10 +6,11 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 # from rest_framework_simplejwt.tokens import RefreshToken
 
 from user_app.api.serializers import RegistrationSerializer
-from user_app import models
+from user_app.api.authentication import CustomBasicAuthentication
 
 class CustomAuthTokenView(ObtainAuthToken):
 
@@ -48,3 +49,11 @@ class RegistrationView(APIView):
             data = serializer.errors
         
         return Response(data, status=status.HTTP_201_CREATED)
+
+
+class CustomAuthenticationView(APIView):
+    authentication_classes = [CustomBasicAuthentication]  # Use your custom authentication
+    permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
+
+    def get(self, request):
+        return Response({"message": "Hello, you are authenticated!"})

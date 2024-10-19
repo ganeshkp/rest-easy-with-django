@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/', obtain_auth_token, name='login'),
     path('user-login/', views.CustomAuthTokenView.as_view(), name='user-login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('custom-auth/', views.CustomAuthenticationView.as_view(), name='custom-auth'),    
 ]
