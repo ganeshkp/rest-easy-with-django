@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "chapter8_validators",
     "chapter9_authentication",
     "user_app",
+    "chapter10_permissions",
 ]
 
 MIDDLEWARE = [

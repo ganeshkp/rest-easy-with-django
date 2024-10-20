@@ -13,6 +13,17 @@ class StreamPlatform(models.Model):
     name = models.CharField(max_length=30)
     about = models.CharField(max_length=150)
     website = models.URLField(max_length=100)
+    
+    class Meta:
+        verbose_name = "Stream Platform"
+        verbose_name_plural = "Stream Platforms"
+        permissions = (
+            ("can_view_stream_platform", "User can view stream platform"),
+            ("can_create_stream_platform", "User can create stream platform"),
+            ("can_update_stream_platform", "User can update stream platform"),
+            ("can_partially_update_stream_platform", "User can partially update stream platform"),
+            ("can_delete_stream_platform", "User can delete stream platform"),            
+        )
 
     def __str__(self):
         return self.name
@@ -32,6 +43,16 @@ class WatchList(models.Model):
                                 choices=CATEGORY_CHOICES,
                                 help_text="Watchlist category")
     
+    class Meta:
+        verbose_name = "Watch List"
+        verbose_name_plural = "Watchlists"
+        permissions = (
+            ("can_view_watchlist", "User can view watchlist"),
+            ("can_create_watchlist", "User can create watchlist"),
+            ("can_update_watchlist", "User can update watchlist"),
+            ("can_partially_update_watchlist", "User can partially update watchlist"),
+            ("can_delete_watchlist", "User can delete watchlist"),            
+        )    
 
     def __str__(self):
         return self.title
@@ -53,6 +74,17 @@ class Review(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     review_date = models.DateField()
+    
+    class Meta:
+        verbose_name = "Review"
+        verbose_name_plural = "Reviews"
+        # permissions = (
+        #     ("can_view_review", "User can review"),
+        #     ("can_create_review", "User can create review"),
+        #     ("can_update_review", "User can update review"),
+        #     ("can_partially_update_review", "User can partially update review"),
+        #     ("can_delete_review", "User can delete review"),            
+        # )
 
     def __str__(self):
         return str(self.rating) + " | " + self.watchlist.title + " | " + str(self.review_user)
