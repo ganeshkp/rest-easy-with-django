@@ -1,35 +1,70 @@
 from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError
 from rest_framework.authentication import BasicAuthentication, TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
 from rest_framework.views import APIView
+from rest_framework.permissions import DjangoObjectPermissions
+from rest_framework.viewsets import ModelViewSet
+from django.contrib.auth import get_user_model
+from guardian.shortcuts import assign_perm, get_perms
 from chapter3_project_setup.models import WatchList, Review, StreamPlatform
 from chapter10_permissions.api import serializers
 from chapter10_permissions.api.permissions import IsReviewUserOrReadOnly, IsAdminOrReadOnly, MultiplePermissionsRequired
 
+User = get_user_model()
 
+#AllowAny
+class WatchlistAllowAnyView(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication,]
+    permission_classes = [AllowAny]  # Ensure that the user is authenticated
+    queryset = WatchList.objects.all()
+    serializer_class = serializers.WatchListModelSerializer
+
+#IsAuthenticated
 class WatchListIsAuthenticatedView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticated,]  # Ensure that the user is authenticated
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
-class WatchListIsAuthenticatedAdminView(viewsets.ModelViewSet):
+#IsAuthenticatedOrReadOnly
+class WatchListIsAuthenticatedOrReadOnlyView(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication,]
+    permission_classes = [IsAuthenticatedOrReadOnly,]
+    queryset = WatchList.objects.all()
+    serializer_class = serializers.WatchListModelSerializer    
+
+#IsAdminUser
+class WatchListIsAdminUserView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticated, IsAdminUser]  # Ensure that the user is authenticated
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
 
+#DjangoModelPermissions
 class WatchListModelPermView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
     permission_classes = [DjangoModelPermissions]
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
+    
+#DjangoObjectPermissions   
+class WatchListObjectPermissionsView(viewsets.ModelViewSet):
+    queryset = WatchList.objects.all()
+    serializer_class = serializers.WatchListModelSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [DjangoObjectPermissions,]  # Use DjangoObjectPermissions
+    
+    def perform_create(self, serializer): # new function
+        instance = serializer.save()
+        assign_perm("delete_watchlist", self.request.user, instance)
+        assign_perm("change_watchlist", self.request.user, instance)
+    
     
     
 #added view level permissions
@@ -99,4 +134,8 @@ class ReviewDetail1(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = serializers.ReviewModelSerializer
     permission_classes = [IsReviewUserOrReadOnly]
+    
 
+
+            
+    

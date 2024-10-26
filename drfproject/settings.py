@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "chapter9_authentication",
     "user_app",
     "chapter10_permissions",
+    'guardian',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,10 @@ REST_FRAMEWORK = {
     ),
 }
 
-
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',  # Default authentication
+#     'guardian.backends.ObjectPermissionBackend',  # Guardian for object-level permissions
+# ]
 
 
 # Internationalization
