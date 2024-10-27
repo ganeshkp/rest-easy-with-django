@@ -1,5 +1,6 @@
 from rest_framework import permissions
 from django.core.exceptions import ImproperlyConfigured
+from rest_framework.permissions import DjangoObjectPermissions
 
 class IsAdminOrReadOnly(permissions.IsAdminUser):
 
@@ -89,3 +90,25 @@ class MultiplePermissionsRequired(permissions.BasePermission):
         """
         if not hasattr(view, "permissions") or not isinstance(view.permissions, dict):
             raise ImproperlyConfigured(f'{self.__class__.__name__} requires "permissions" attribute to be set as a dict.' )
+
+
+class CustomDjangoObjectPermissions(DjangoObjectPermissions):
+    """
+    Custom permissions class that uses custom permissions from the model's Meta class.
+    Overrides the default `perms_map` to map custom permissions based on the request method.
+    """
+
+    # Override the perms_map with your custom permissions
+    perms_map = {
+        'GET': ['chapter3_project_setup.can_view_watchlist'],
+        'POST': ['chapter3_project_setup.can_create_watchlist'],
+        'PUT': ['chapter3_project_setup.can_update_watchlist'],
+        'PATCH': ['chapter3_project_setup.can_partially_update_watchlist'],
+        'DELETE': ['chapter3_project_setup.can_delete_watchlist'],
+    }
+    
+    def has_object_permission(self, request, view, obj):
+        # Bypass object-level checks for 'GET' requests, only use model-level
+        if request.method == 'GET':
+            return request.user.has_perm('chapter3_project_setup.can_view_watchlist')
+        return super().has_object_permission(request, view, obj)

@@ -13,12 +13,13 @@ router.register(r"watchlist-adminuser", views.WatchListIsAdminUserView, basename
 router.register(r"watchlist-modelperm", views.WatchListModelPermView, basename="watchlist-modelperm")
 router.register(r"watchlist-multiplepermview", views.WatchListMultiplePermView, basename="watchlist-multiplepermview")
 router.register(r"watchlist-objectpermissionview", views.WatchListObjectPermissionsView, basename="watchlist-objectpermissionview")
+router.register(r"watchlist-objectpermissionmapview", views.WatchListObjectPermissionsMapView, basename="watchlist-objectpermissionmapview")
 
 urlpatterns = [   
-    path(r"stream-platform", views.stream_platform_view1),
+    path(r"stream-platform", views.stream_platform_isauthenticated_view),
     path('<int:pk>/reviews1/', views.ReviewList1.as_view(), name='review-list1'),
-    path('reviews1/<int:pk>/', views.ReviewDetail1.as_view(), name='review-detail1'),
-    path('watchlist/', views.WatchListView1.as_view(), name='watchlist'),
+    path('reviews1/<int:pk>/', views.ReviewDetailCustomPermissionView.as_view(), name='review-detail1'),
+    path('watchlist/', views.WatchlistCustomPermissionView.as_view(), name='watchlist'),
     
     # Using ViewSet
     path("", include(router.urls)),   

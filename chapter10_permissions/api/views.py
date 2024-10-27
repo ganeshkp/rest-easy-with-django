@@ -13,10 +13,11 @@ from django.contrib.auth import get_user_model
 from guardian.shortcuts import assign_perm, get_perms
 from chapter3_project_setup.models import WatchList, Review, StreamPlatform
 from chapter10_permissions.api import serializers
-from chapter10_permissions.api.permissions import IsReviewUserOrReadOnly, IsAdminOrReadOnly, MultiplePermissionsRequired
+from chapter10_permissions.api.permissions import IsReviewUserOrReadOnly, IsAdminOrReadOnly, MultiplePermissionsRequired, CustomDjangoObjectPermissions
 
 User = get_user_model()
 
+#----------------------------------------------------------------
 #AllowAny
 class WatchlistAllowAnyView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
@@ -24,6 +25,7 @@ class WatchlistAllowAnyView(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
 
+#----------------------------------------------------------------
 #IsAuthenticated
 class WatchListIsAuthenticatedView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
@@ -31,13 +33,32 @@ class WatchListIsAuthenticatedView(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
+# Function based view with basic authentication
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+@authentication_classes([BasicAuthentication])
+def stream_platform_isauthenticated_view(request):
+    if request.method == 'GET':
+        # Handle GET request
+        watchlist = StreamPlatform.objects.all()
+        serializer = serializers.StreamPlatformModelSerializer(watchlist, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        # Handle POST request
+        serializer = serializers.StreamPlatformModelSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#----------------------------------------------------------------    
 #IsAuthenticatedOrReadOnly
 class WatchListIsAuthenticatedOrReadOnlyView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticatedOrReadOnly,]
     queryset = WatchList.objects.all()
-    serializer_class = serializers.WatchListModelSerializer    
-
+    serializer_class = serializers.WatchListModelSerializer
+    
+#----------------------------------------------------------------
 #IsAdminUser
 class WatchListIsAdminUserView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
@@ -45,14 +66,15 @@ class WatchListIsAdminUserView(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
-
+#----------------------------------------------------------------
 #DjangoModelPermissions
 class WatchListModelPermView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
     permission_classes = [DjangoModelPermissions]
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
-    
+
+#----------------------------------------------------------------
 #DjangoObjectPermissions   
 class WatchListObjectPermissionsView(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
@@ -66,8 +88,8 @@ class WatchListObjectPermissionsView(viewsets.ModelViewSet):
         assign_perm("change_watchlist", self.request.user, instance)
     
     
-    
-#added view level permissions
+#----------------------------------------------------------------
+#added view level multiple permissions
 class WatchListMultiplePermView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]
     permission_classes = [MultiplePermissionsRequired,]
@@ -81,10 +103,19 @@ class WatchListMultiplePermView(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
 
+#----------------------------------------------------------------
+#DjangoObjectPermissions with perms_map
+class WatchListObjectPermissionsMapView(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication,]
+    permission_classes = [CustomDjangoObjectPermissions]
+    queryset = WatchList.objects.all()
+    serializer_class = serializers.WatchListModelSerializer
     
+
+#---------------------Custom Permissions-----------------------------    
 # This view allows only admin users to create watchlist
 #remaining users only can get list of movies.
-class WatchListView1(APIView):
+class WatchlistCustomPermissionView(APIView):
     permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request):
@@ -98,27 +129,17 @@ class WatchListView1(APIView):
             serializer.save()
             return Response(serializer.data)
         else:
-            return Response(serializer.errors)
-    
-    
-# Function based view with basic authentication
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-@authentication_classes([BasicAuthentication])
-def stream_platform_view1(request):
-    if request.method == 'GET':
-        # Handle GET request
-        watchlist = StreamPlatform.objects.all()
-        serializer = serializers.StreamPlatformModelSerializer(watchlist, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        # Handle POST request
-        serializer = serializers.StreamPlatformModelSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors) 
 
+# This view prevents user from update/delete operations 
+# for non review users 
+class ReviewDetailCustomPermissionView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = serializers.ReviewModelSerializer
+    permission_classes = [IsReviewUserOrReadOnly]
+    
+    
+#-------------------------------------------------------------------------------
 # Gets all review lists for authenticated users   
 class ReviewList1(generics.ListAPIView):
     serializer_class = serializers.ReviewModelSerializer
@@ -127,14 +148,6 @@ class ReviewList1(generics.ListAPIView):
     def get_queryset(self):
         pk = self.kwargs['pk']
         return Review.objects.filter(watchlist=pk)
-        
-# This view prevents user from update/delete operations 
-# for non review users 
-class ReviewDetail1(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Review.objects.all()
-    serializer_class = serializers.ReviewModelSerializer
-    permission_classes = [IsReviewUserOrReadOnly]
-    
 
 
             
