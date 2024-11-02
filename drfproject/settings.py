@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "user_app",
     "chapter10_permissions",
     'guardian',
+    "chapter11_caching",
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,13 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',
         # 'user_app.api.authentication.BearerAuthentication',
     ),
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',  # In-memory caching
+        'LOCATION': 'unique-snowflake',
+    }
 }
 
 # AUTHENTICATION_BACKENDS = [

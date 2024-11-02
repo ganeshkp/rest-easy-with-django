@@ -27,4 +27,5 @@ urlpatterns = [
     path('api/chapter9_authentication/', include('chapter9_authentication.api.urls')),
     path('api/user/', include('user_app.api.urls')),
     path('api/chapter10_permissions/', include('chapter10_permissions.api.urls')),
+    path('api/chapter11_caching/', include('chapter11_caching.api.urls')),
 ]
