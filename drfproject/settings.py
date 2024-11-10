@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "chapter10_permissions",
     'guardian',
     "chapter11_caching",
+    "chapter12_throttling",
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,17 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',
         # 'user_app.api.authentication.BearerAuthentication',
     ),
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+        'rest_framework.throttling.ScopedRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '2/day',       # 2 requests per day for anonymous users
+        'user': '5/day',      # 5 requests per day for authenticated users
+        'watchlist': '3/hour',  # Example rate: 5 requests per hour for the 'watchlist' scope
+        # Add other scopes if needed
+    },
 }
 
 CACHES = {
