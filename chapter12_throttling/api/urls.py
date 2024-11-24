@@ -14,15 +14,6 @@ router.register(r"watchlist-customthrottle", views.WatchlistCustomThrottleView, 
 
 
 urlpatterns = [   
-    # path(r"watchlist-list", views.watchlist_list_view),
-    # path(r"watchlist-list/<int:pk>/", views.watchlist_detail_view),
-    # path(r"watchlist-lowlevelcaching", views.WatchLowLevelCachingView.as_view()),
-    # path(r"watchlist-objectlevelcaching/<int:pk>/", views.WatchListObjectLevelCachingView.as_view()),
-    # path(r"watchlist-cachemixinlist", views.WatchListCacheMixinListView.as_view()),
-    # path(r"watchlist-cachemixinlist/<int:pk>/", views.WatchListCacheMixinDetailView.as_view()),
-    # path(r"watchlist-varyonheadercache", views.WatchListVaryOnHeaderCacheView.as_view()),
-    # path(r"watchlist-varyoncookiecache", views.WatchListVaryOnCookieCacheView.as_view()),
-    
     # Using ViewSet
     path("", include(router.urls)),   
 ]

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'guardian',
+    'django_filters',
 
     # "watchlist_app",
     "chapter3_project_setup",
@@ -47,10 +49,10 @@ INSTALLED_APPS = [
     "chapter8_validators",
     "chapter9_authentication",
     "user_app",
-    "chapter10_permissions",
-    'guardian',
+    "chapter10_permissions",    
     "chapter11_caching",
     "chapter12_throttling",
+    "chapter13_filtering_searching_ordering",
 ]
 
 MIDDLEWARE = [
@@ -123,17 +125,21 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',
         # 'user_app.api.authentication.BearerAuthentication',
     ),
-    'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle',
-        'rest_framework.throttling.ScopedRateThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '2/day',       # 2 requests per day for anonymous users
-        'user': '5/day',      # 5 requests per day for authenticated users
-        'watchlist': '3/hour',  # Example rate: 5 requests per hour for the 'watchlist' scope
-        # Add other scopes if needed
-    },
+    # 'DEFAULT_THROTTLE_CLASSES': [
+    #     'rest_framework.throttling.AnonRateThrottle',
+    #     'rest_framework.throttling.UserRateThrottle',
+    #     'rest_framework.throttling.ScopedRateThrottle',
+    # ],
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'anon': '2/day',       # 2 requests per day for anonymous users
+    #     'user': '5/day',      # 5 requests per day for authenticated users
+    #     'watchlist': '3/hour',  # Example rate: 5 requests per hour for the 'watchlist' scope
+    #     # Add other scopes if needed
+    # },
+    'DEFAULT_FILTER_BACKENDS': [
+            'django_filters.rest_framework.DjangoFilterBackend',
+            'rest_framework.filters.SearchFilter',
+        ],
 }
 
 CACHES = {
