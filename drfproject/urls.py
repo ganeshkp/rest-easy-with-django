@@ -30,4 +30,5 @@ urlpatterns = [
     path('api/chapter11_caching/', include('chapter11_caching.api.urls')),
     path('api/chapter12_throttling/', include('chapter12_throttling.api.urls')),
     path('api/chapter13_filtering_searching_ordering/', include('chapter13_filtering_searching_ordering.api.urls')),
+    path('api/chapter14_pagination/', include('chapter14_pagination.api.urls')),
 ]

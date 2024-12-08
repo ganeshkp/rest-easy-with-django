@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "chapter11_caching",
     "chapter12_throttling",
     "chapter13_filtering_searching_ordering",
+    "chapter14_pagination",
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,8 @@ REST_FRAMEWORK = {
             'django_filters.rest_framework.DjangoFilterBackend',
             'rest_framework.filters.SearchFilter',
         ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # Use PageNumberPagination globally
+    'PAGE_SIZE': 3,  # Default number of results per page
 }
 
 CACHES = {
