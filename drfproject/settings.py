@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "chapter12_throttling",
     "chapter13_filtering_searching_ordering",
     "chapter14_pagination",
+    "chapter15_versioning",
 ]
 
 MIDDLEWARE = [

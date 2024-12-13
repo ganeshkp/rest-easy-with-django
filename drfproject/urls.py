@@ -31,4 +31,6 @@ urlpatterns = [
     path('api/chapter12_throttling/', include('chapter12_throttling.api.urls')),
     path('api/chapter13_filtering_searching_ordering/', include('chapter13_filtering_searching_ordering.api.urls')),
     path('api/chapter14_pagination/', include('chapter14_pagination.api.urls')),
+    path('api/chapter15_versioning/v1/', include(('chapter15_versioning.api.urls', 'chapter15_versioning'), namespace="v1")),
+    path('api/chapter15_versioning/v2/', include(('chapter15_versioning.api.urls', 'chapter15_versioning'), namespace="v2")),
 ]
