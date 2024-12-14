@@ -8,6 +8,9 @@ router = DefaultRouter()
 # Using ViewSet
 router.register(r"watchlist-urlpath", views.WatchListUrlPathVersioningViewSet, basename="watchlist-urlpath")
 router.register(r"watchlist-namespace", views.WatchListNamespaceVersioningViewSet, basename="watchlist-namespace")
+router.register(r"watchlist-queryparam", views.WatchListQueryParameterVersioningViewSet, basename="watchlist-queryparam")
+router.register(r"watchlist-acceptheader", views.WatchListAcceptHeaderVersioningViewSet, basename="watchlist-acceptheader")
+router.register(r"watchlist-custom", views.WatchListCustomVersioningViewSet, basename="watchlist-custom")
 
 
 urlpatterns = [
