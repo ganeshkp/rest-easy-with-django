@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "chapter13_filtering_searching_ordering",
     "chapter14_pagination",
     "chapter15_versioning",
+    "chapter16_testing",
 ]
 
 MIDDLEWARE = [
@@ -144,6 +145,12 @@ REST_FRAMEWORK = {
         ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # Use PageNumberPagination globally
     'PAGE_SIZE': 3,  # Default number of results per page
+
+    #Default version configuration
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'DEFAULT_VERSION': 'v1', # Default version if not explicitly specified
+    'ALLOWED_VERSIONS': ['v1', 'v2'], # Define allowed versions
+    'VERSION_PARAM': 'version',
 }
 
 CACHES = {

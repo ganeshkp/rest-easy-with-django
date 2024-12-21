@@ -34,4 +34,5 @@ urlpatterns = [
     path('api/chapter15_versioning/', include('chapter15_versioning.api.urls')),
     path('api/v1/chapter15_versioning/', include(('chapter15_versioning.api.urls', 'chapter15_versioning'), namespace="v1")),
     path('api/v2/chapter15_versioning/', include(('chapter15_versioning.api.urls', 'chapter15_versioning'), namespace="v2")),
+    path('api/chapter16_testing/', include('chapter16_testing.api.urls')),
 ]

@@ -10,7 +10,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/manage.py",            
             "args": [
-                "runserver"
+                "runserver",
+                "0.0.0.0:8000",
+                "--nothreading",
             ],
             // SET conda envionment path
             "python": "/home/ganeshp/miniconda3/envs/drf_book/bin/python",
@@ -18,7 +20,39 @@
 
             },
             "django": true,
-            "justMyCode": false
+            "justMyCode": false,
+            // "preLaunchTask":"myShellCommand",
+        },
+        {
+            "name": "test_debug_full",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",            
+            "args": [
+                "test",
+            ],
+            // SET conda envionment path
+            "python": "/home/ganeshp/miniconda3/envs/drf_book/bin/python",
+            "env": {
+
+            },
+            "django": true,
+        },
+        {
+            "name": "test_debug_current_file",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",            
+            "args": [
+                "test",
+                "${relativeFileDirname}",
+            ],
+            // SET conda envionment path
+            "python": "/home/ganeshp/miniconda3/envs/drf_book/bin/python",
+            "env": {
+
+            },
+            "django": true,
         }
     ]
 }
