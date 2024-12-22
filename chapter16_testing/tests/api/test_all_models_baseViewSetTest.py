@@ -8,7 +8,7 @@ from chapter3_project_setup.models import WatchList, StreamPlatform, Review
 from chapter16_testing.tests.factories.watchlist_factories import WatchListFactory
 from chapter16_testing.tests.factories.streamplatform_factories import StreamPlatformFactory
 from chapter16_testing.tests.factories.review_factories import ReviewFactory
-from chapter16_testing.tests.factories.user_factories import UserFactory
+from tests.factories.user_factories import UserFactory
 
 sorted_streamplatform_keys = [
     'about', 

@@ -2,7 +2,7 @@ import factory
 from chapter3_project_setup.models import Review
 from django.contrib.auth import get_user_model
 from faker import Faker
-from chapter16_testing.tests.factories.user_factories import UserFactory
+from tests.factories.user_factories import UserFactory
 from chapter16_testing.tests.factories.watchlist_factories import WatchListFactory
 
 fake = Faker()
