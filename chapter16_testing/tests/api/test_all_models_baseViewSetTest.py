@@ -1,10 +1,46 @@
+from copy import deepcopy
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from django.urls import reverse
 from chapter3_project_setup.models import WatchList, StreamPlatform, Review
+from chapter16_testing.tests.factories.watchlist_factories import WatchListFactory
+from chapter16_testing.tests.factories.streamplatform_factories import StreamPlatformFactory
+from chapter16_testing.tests.factories.review_factories import ReviewFactory
+from chapter16_testing.tests.factories.user_factories import UserFactory
+
+sorted_streamplatform_keys = [
+    'about', 
+    'id', 
+    'name', 
+    'website'
+]
+
+sorted_watchlist_keys = [
+    'active', 
+    'category', 
+    'created', 
+    'episodes', 
+    'id', 
+    'imdb_rating', 
+    'platform', 
+    'storyline', 
+    'title'
+]
+
+sorted_review_keys = [
+    'active', 
+    'created', 
+    'description', 
+    'id', 
+    'rating', 
+    'review_date', 
+    'review_user', 
+    'update', 
+    'watchlist'
+]
+
 
 User = get_user_model()
 
@@ -16,33 +52,19 @@ class BaseViewSetTest(APITestCase):
     """
     def setUp(self):
         # Create test user and token for authentication
-        self.user = User.objects.create_user(username="example", password="Password@123")
+        self.user = UserFactory()
         self.token = Token.objects.get(user__username=self.user)
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
-        
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)        
         
         # Create test data for WatchList, StreamPlatform, and Review
-        self.streamplatform = StreamPlatform.objects.create(
-            name="Netflix",
-            about="Netflix Streaming Platform",
-            website="https://netflix.com"
-        )
+        self.streamplatform = StreamPlatformFactory()
+        self.watchlist = WatchListFactory()
+        self.review = ReviewFactory()
         
-        self.watchlist = WatchList.objects.create(
-            title="Test WatchList",
-            storyline="Test storyline",
-            platform=self.streamplatform,
-            category="Drama"
-        )
-        
-        self.review = Review.objects.create(
-            review_user=self.user,
-            rating=4,
-            description="Great movie",
-            watchlist=self.watchlist,
-            active=True,
-            review_date="2023-09-13"
-        )
+    def tearDown(self):
+        self.streamplatform.delete()
+        self.watchlist.delete()
+        self.review.delete()
 
     def authenticate_client(self):
         """Helper method to ensure the client is authenticated."""
@@ -57,7 +79,7 @@ class WatchListViewSetTest(BaseViewSetTest):
     def test_watchlist_get_all(self):
         response = self.client.get("/api/chapter16_testing/watchlists/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(sorted(response.data["results"][0].keys()), sorted_watchlist_keys)
         
     def test_watchlist_get_all_unauthenticated_user(self):
         self.unauthenticate_client()
@@ -75,11 +97,17 @@ class WatchListViewSetTest(BaseViewSetTest):
             "title": "Movie1",
             "storyline": "Movie1 Story",
             "platform": 1,
-            "category": "MOVIE"
+            "category": "MOVIE",
+            "imdb_rating":4.0,
+            "active": True,
         }
+        response_data = deepcopy(data)
+        response_data["episodes"]=0
         response = self.client.post("/api/chapter16_testing/watchlists/", data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(WatchList.objects.count(), 2)
+        del response.data["id"]
+        del response.data["created"]
+        self.assertEqual(response.data, response_data)
 
     def test_watchlist_update(self):
         data = {"title": "Updated WatchList"}
@@ -99,7 +127,7 @@ class StreamPlatformViewSetTest(BaseViewSetTest):
         #reverse arguments are reverse(basename-list)
         response = self.client.get(reverse("stream-platforms-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(sorted(response.data["results"][0].keys()), sorted_streamplatform_keys)
 
     def test_streamplatform_get_single(self):
         #reverse arguments are reverse(basename-detail)
@@ -115,7 +143,8 @@ class StreamPlatformViewSetTest(BaseViewSetTest):
         }
         response = self.client.post(reverse("stream-platforms-list"), data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(StreamPlatform.objects.count(), 2)
+        del response.data["id"]
+        self.assertEqual(response.data, data)
 
     def test_streamplatform_update(self):
         data = {"name": "Updated Platform"}
@@ -134,7 +163,7 @@ class ReviewViewSetTest(BaseViewSetTest):
     def test_review_get_all(self):
         response = self.client.get("/api/chapter16_testing/reviews/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(sorted(response.data["results"][0].keys()), sorted_review_keys)
 
     def test_review_get_single(self):
         response = self.client.get(f"/api/chapter16_testing/reviews/{self.review.id}/")
@@ -152,7 +181,10 @@ class ReviewViewSetTest(BaseViewSetTest):
         }
         response = self.client.post("/api/chapter16_testing/reviews/", data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Review.objects.count(), 2)
+        del response.data["id"]
+        del response.data["created"]
+        del response.data["update"]
+        self.assertEqual(response.data, data)
 
     def test_review_update_with_no_permission(self):
         data = {"rating": 3, "description": "Average movie"}
