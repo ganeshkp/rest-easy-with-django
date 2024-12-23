@@ -53,6 +53,7 @@ class BaseViewSetTest(APITestCase):
     def setUp(self):
         # Create test user and token for authentication
         self.user = UserFactory()
+        self.client.login(username=self.user.username, password=self.user.password)
         self.token = Token.objects.get(user__username=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)        
         
@@ -65,6 +66,7 @@ class BaseViewSetTest(APITestCase):
         self.streamplatform.delete()
         self.watchlist.delete()
         self.review.delete()
+        self.client.logout()
 
     def authenticate_client(self):
         """Helper method to ensure the client is authenticated."""

@@ -134,6 +134,7 @@ class StreamPlatformViewSetTest(APITestCase):
     def setUp(self):
         # Create test user and token for authentication
         self.user = User.objects.create_user(username="example", password="Password@123")
+        self.client.login(username=self.user.username, password=self.user.password)
         self.token = Token.objects.get(user__username=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)        
         
@@ -147,6 +148,7 @@ class StreamPlatformViewSetTest(APITestCase):
     def tearDown(self):
         self.streamplatform.delete()
         self.user.delete()
+        self.client.logout()
 
     def test_streamplatform_get_all(self):
         #reverse arguments are reverse(basename-list)
@@ -187,6 +189,7 @@ class ReviewViewSetTest(APITestCase):
     def setUp(self):
         # Create test user and token for authentication
         self.user = User.objects.create_user(username="example", password="Password@123")
+        self.client.login(username=self.user.username, password=self.user.password)
         self.token = Token.objects.get(user__username=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         
@@ -218,6 +221,7 @@ class ReviewViewSetTest(APITestCase):
         self.streamplatform.delete()
         self.watchlist.delete()
         self.review.delete()
+        self.client.logout()
 
     def test_review_get_all(self):
         response = self.client.get("/api/chapter16_testing/reviews/")

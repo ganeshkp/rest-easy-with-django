@@ -25,11 +25,13 @@ class BaseAPITests:
             
         def test_method_authenticated_user(self):
             user = UserFactory()
+            self.client.login(username=user.username, password=user.password)
             self.token = Token.objects.get(user__username=user)
             self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
             
             response = getattr(self.client, self.request_method)(self.url, self.data, follow=True, **self.request_kwargs)
-            self.assertEqual(response.status_code, self.auth_response_code)            
+            self.assertEqual(response.status_code, self.auth_response_code)
+            self.client.logout()     
     
     class APIListTests(APITests):
         request_method="get" 
