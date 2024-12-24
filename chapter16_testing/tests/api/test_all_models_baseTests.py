@@ -155,6 +155,12 @@ class StreamPlatformViewSetTest(APITestCase):
         response = self.client.get(reverse("stream-platforms-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data["results"]), 1)
+        
+    def test_streamplatform_get_all_unauthenticated(self):
+        self.client.credentials() #unauthenticate the user
+        #reverse arguments are reverse(basename-list)
+        response = self.client.get(reverse("stream-platforms-list"))
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_streamplatform_get_single(self):
         #reverse arguments are reverse(basename-detail)
