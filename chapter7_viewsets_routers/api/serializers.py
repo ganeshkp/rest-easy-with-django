@@ -36,7 +36,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
         # fields = ["title", "storyline", "platform"]
         read_only_fields = ['full_title']
         extra_kwargs = {
-            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(5.0)]}
+            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(10.0)]}
         }
         
         

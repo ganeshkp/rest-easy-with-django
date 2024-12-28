@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
 from chapter3_project_setup.models import WatchList, StreamPlatform, Review
@@ -18,8 +17,8 @@ class WatchlistSerializer(serializers.Serializer):
     active = serializers.BooleanField()
     # platform = StreamPlatformSerializer()
     # platform = serializers.StringRelatedField()
-    # platform = serializers.HyperlinkedRelatedField(view_name='streamplatform-detail-cbv-try1', read_only=True)
-    # platform = serializers.HyperlinkedIdentityField(view_name='streamplatform-detail-cbv-try1', read_only=True)
+    # platform = serializers.HyperlinkedRelatedField(view_name='streamplatform-detail-basic-serializer', read_only=True)
+    # platform = serializers.HyperlinkedIdentityField(view_name='streamplatform-detail-basic-serializer', read_only=True)
     platform = serializers.SlugRelatedField(slug_field="name", queryset=StreamPlatform.objects.all())
     imdb_rating = serializers.FloatField(default=0)
     created = serializers.DateTimeField()
@@ -87,19 +86,19 @@ class WatchlistModelBasicSerializer(serializers.ModelSerializer):
     
     class Meta:
         model=WatchList
-        fields = ["title", "platform", "imdb_rating", "created"]
+        fields = ["title", "platform", "imdb_rating", "created", "active"]
 
 class WatchListModelSerializer(serializers.ModelSerializer):
     full_title = serializers.SerializerMethodField()
     user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     
-    # created = CustomDateTimeSerializerField()    
-    # serializer_field_mapping = {
-    #     models.DateTimeField: CustomDateTimeField,
-    # }
+    # # created = CustomDateTimeSerializerField()    
+    # # serializer_field_mapping = {
+    # #     models.DateTimeField: CustomDateTimeField,
+    # # }
     serializer_related_field = fields.CustomPrimaryKeyRelatedField
-    # platform = serializers.HyperlinkedRelatedField(view_name='streamplatform-detail-cbv-try2', read_only=True)
-    # serializer_url_field = fields.CustomHyperlinkedRelatedField
+    # # platform = serializers.HyperlinkedRelatedField(view_name='streamplatform-detail-cbv-try2', read_only=True)
+    # # serializer_url_field = fields.CustomHyperlinkedRelatedField
     serializer_choice_field = fields.CustomChoiceField
     
     class Meta:
@@ -108,7 +107,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
         # fields = ["title", "storyline", "platform"]
         read_only_fields = ['full_title']
         extra_kwargs = {
-            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(5.0)]}
+            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(10.0)]}
         }
         
         
@@ -142,7 +141,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
     
 class StreamPlatformModelSerializer(serializers.ModelSerializer):
     watchlist = WatchListModelSerializer(many=True, read_only=True)
-    serializer_url_field = fields.CustomHyperlinkedRelatedField
+    # serializer_url_field = fields.CustomHyperlinkedRelatedField
 
     class Meta:
         model = StreamPlatform
@@ -163,22 +162,21 @@ class ReviewModelSerializer(serializers.ModelSerializer):
         
 #############################HyperlinkedModelSerializer#########################
 
-class WatchListHyperlinkedModelSerializer(serializers.HyperlinkedModelSerializer):
+class WatchListHMSerializer(serializers.HyperlinkedModelSerializer):
    
     class Meta:
         model = WatchList
         fields = "__all__"
         read_only_fields = ['full_title']
         extra_kwargs = {
-            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(5.0)]},
-            'platform': {'view_name':'streamplatform-detail-cbv-try3'},
-            'url': {'view_name': 'watchlist-detail-cbv-try3', 'lookup_field': 'pk'},         
-        }
-        
+            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(10.0)]},
+            'platform': {'view_name':'streamplatform-detail-hm-serializer'},
+            'url': {'view_name': 'streamplatform-detail-hm-serializer', 'lookup_field': 'pk'},         
+        }        
     
     
-class StreamPlatformHyperlinkedModelSerializer(serializers.HyperlinkedModelSerializer):
-    watchlist = WatchListHyperlinkedModelSerializer(many=True, read_only=True)
+class StreamPlatformHMSerializer(serializers.HyperlinkedModelSerializer):
+    watchlist = WatchListHMSerializer(many=True, read_only=True)
 
     class Meta:
         model = StreamPlatform
@@ -187,7 +185,7 @@ class StreamPlatformHyperlinkedModelSerializer(serializers.HyperlinkedModelSeria
         extra_kwargs = {
             'about':{'allow_null':True, 'default':""},
             'website':{'required': False},
-            'url':{'view_name':'streamplatform-detail-cbv-try3', 'lookup_field':'pk'}            
+            'url':{'view_name':'streamplatform-detail-hm-serializer', 'lookup_field':'pk'}            
         }
 
 ##################################ListSerializer##########################
@@ -199,44 +197,16 @@ class CustomWatchlistListSerializer(serializers.ListSerializer):
         # You can do some validation here before making bulk create
         watchlist = [WatchList(**item) for item in validated_data]
         result = WatchList.objects.bulk_create(watchlist)
-        self.create_or_update(self.instance, validated_data)
-        return result
-    
-    def create_or_update(self, instance, validated_data):
-        # Maps for id->instance and id->data item.
-        watchlist_mapping = {watchlist.id: watchlist for watchlist in instance}
-        data_mapping = {item['id']: item for item in validated_data}
-
-        # Perform creations and updates.
-        ret = []
-        for watchlist_id, data in data_mapping.items():
-            watchlist = watchlist_mapping.get(watchlist_id, None)
-            if watchlist is None:
-                ret.append(self.child.create(data))
-            else:
-                ret.append(self.child.update(watchlist, data))
-
-        # Perform deletions.
-        for watchlist_id, watchlist in watchlist_mapping.items():
-            if watchlist_id not in data_mapping:
-                watchlist.delete()
-
-        return ret
-
-    
-    def validate(self, attrs):
-        return super().validate(attrs)
-    
+        return result    
     
     
 class WatchlistDemoListSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField()
     
     class Meta:
         model = WatchList
         fields = "__all__"
         extra_kwargs = {
-            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(5.0)]}
+            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(10.0)]}
         }
         
         list_serializer_class = CustomWatchlistListSerializer

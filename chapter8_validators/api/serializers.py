@@ -18,7 +18,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
         model = WatchList
         fields = "__all__"
         extra_kwargs = {
-            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(5.0)]}
+            'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(10.0)]}
         }
         validators = [validators.validate_watchlist_type,
                       validators.CreateRequiredTogetherValidator(

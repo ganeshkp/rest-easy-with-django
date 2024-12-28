@@ -1,23 +1,21 @@
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, viewsets
+from rest_framework import status
 from rest_framework import generics
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import mixins
-from rest_framework.decorators import action
-from django.db import transaction
+
 
 from django.http import Http404
 from chapter3_project_setup.models import WatchList, Review, StreamPlatform
-from . import serializers
-from chapter6_serializers_views.api.mixins import MultipleFieldLookupMixin, TotalEpisodesMixin
+from chapter6_serializers_views.api import serializers
+from chapter6_serializers_views.api.mixins import MultipleFieldLookupMixin
 
 ################################Class Based Views##############################
 
 #=============Views Using Basic Serializer=================
-class WatchlistCBView1(APIView):
+class WatchlistBasicSerializerView(APIView):
     """
     View to list all Movies in the system.
     """
@@ -40,7 +38,7 @@ class WatchlistCBView1(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-class WatchlistDetailCBView1(APIView):
+class WatchlistDetailBasicSerializerView(APIView):
     """
     View in detail individual Watchlist in the system.
     """
@@ -82,9 +80,9 @@ class WatchlistDetailCBView1(APIView):
         except Exception as err:
             raise Http404
         
-class StreamPlatformDetailView1(APIView):
+class StreamPlatformBasicSerializerView(APIView):
     """
-    Stream Platform Detail View
+    Stream Platform Using Basic Serializer View
     """
     
     def get(self, request, pk):
@@ -96,7 +94,7 @@ class StreamPlatformDetailView1(APIView):
         serializer = serializers.StreamPlatformSerializer(platform)
         return Response(serializer.data)
         
-class ReviewlistCBView1(APIView):
+class ReviewlistBasicSerializerView(APIView):
     """
     View to list all Reviews in the system.
     """
@@ -110,7 +108,7 @@ class ReviewlistCBView1(APIView):
     
     
 #=============Views Using ModelSerializer=================
-class WatchlistCBView2(APIView):
+class WatchlistModelSerializerView(APIView):
     """
     View to list all Movies in the system.
     """
@@ -126,7 +124,7 @@ class WatchlistCBView2(APIView):
         """
         Create a new watchlist.
         """
-        serializer = serializers.WatchListModelSerializer(data=request.data)
+        serializer = serializers.WatchListModelSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -184,7 +182,7 @@ class ReviewlistCBView2(APIView):
         return Response(serializer.data)
         
 #=============Views Using HyperLinkedModelSerializer=================
-class WatchlistCBView3(APIView):
+class WatchlistHMSerializerView(APIView):
     """
     View to list all Movies in the system.
     """
@@ -193,34 +191,34 @@ class WatchlistCBView3(APIView):
         Return a list of all watchlist.
         """
         watchlist = WatchList.objects.all()
-        serializer = serializers.WatchListHyperlinkedModelSerializer(watchlist, many = True, context={'request': request})
+        serializer = serializers.WatchListHMSerializer(watchlist, many = True, context={'request': request})
         return Response(serializer.data)
     
     def post(self, request, format=None):
         """
         Create a new watchlist.
         """
-        serializer = serializers.WatchListHyperlinkedModelSerializer(data=request.data, context={'request': request})
+        serializer = serializers.WatchListHMSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class WatchlistDetailCBView3(APIView):
+class WatchlistDetailHMSerializerView(APIView):
     """
     View in detail individual Watchlist in the system.
     """
     def get(self, request, pk, format=None):
         try:
             watchlist = WatchList.objects.get(pk=pk)
-            serializer = serializers.WatchListHyperlinkedModelSerializer(watchlist, context={'request': request})
+            serializer = serializers.WatchListHMSerializer(watchlist, context={'request': request})
             return Response(serializer.data)
         except WatchList.DoesNotExist:
             raise Http404
         
 
-class StreamPlatformDetailView3(APIView):
+class StreamPlatformDetailHMSerializerView(APIView):
     """
     Stream Platform Detail View
     """
@@ -231,11 +229,11 @@ class StreamPlatformDetailView3(APIView):
         except StreamPlatform.DoesNotExist:
             return Response({'error': 'Not found'}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = serializers.StreamPlatformHyperlinkedModelSerializer(platform, context={'request': request})
+        serializer = serializers.StreamPlatformHMSerializer(platform, context={'request': request})
         return Response(serializer.data)
   
 #=============Views Using ListModelSerializer=================
-class WatchlistCBView4(APIView):
+class WatchlistListSerializerView(APIView):
     """
     View to list all Movies in the system.
     """
@@ -251,23 +249,16 @@ class WatchlistCBView4(APIView):
         """
         Create a new watchlist.
         """
-        serializer = serializers.WatchlistDemoListSerializer(data=request.data, many=True)
+        if type(request.data) is dict:
+            serializer = serializers.WatchlistDemoListSerializer(data=request.data, many=False)
+        else:
+            serializer = serializers.WatchlistDemoListSerializer(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
-    def put(self, request, format=None):
-        serializer = serializers.WatchlistDemoListSerializer(data=request.data, many=True)
-        serializer.is_valid(raise_exception=True)
-
-        # Perform the bulk update
-        serializer.save()
-
-        return Response(serializer.data)
-
 
 #=============Views Using BaseSerializer=================
-class WatchlistCBView5(APIView):
+class WatchlistBaseSerializerView(APIView):
     """
     View to list all Movies in the system.
     """
@@ -289,7 +280,7 @@ class WatchlistCBView5(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 #=============Views Using GenericAPIView=================
-class WatchlistCBView6(generics.GenericAPIView):
+class WatchlistGAPIView(generics.GenericAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     pagination_class = PageNumberPagination
@@ -343,7 +334,7 @@ class WatchlistCBView6(generics.GenericAPIView):
         return context
     
     
-class WatchlistDetailVBView6(generics.GenericAPIView):
+class WatchlistDetailGAPIView(generics.GenericAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     lookup_field = "title" # Set the lookup field to 'title' or any other field you prefer
@@ -374,14 +365,14 @@ class WatchlistDetailVBView6(generics.GenericAPIView):
         return Response(serializer.data)
     
 #=======================Views using ListModelMixin and GenericAPIView=====
-class WatchlistCBView7(generics.GenericAPIView, mixins.ListModelMixin):
+class WatchlistListModelMixinView(generics.GenericAPIView, mixins.ListModelMixin):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
     
 #=======================Views using CreateModelMixin and GenericAPIView=====
-class WatchlistCBView8(generics.GenericAPIView, mixins.CreateModelMixin):
+class WatchlistCreateModelMixinView(generics.GenericAPIView, mixins.CreateModelMixin):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
@@ -394,14 +385,14 @@ class WatchlistCBView8(generics.GenericAPIView, mixins.CreateModelMixin):
         return self.create(request, *args, **kwargs)
         
 #=======================Views using RetrieveModelMixin and GenericAPIView=====
-class WatchlistCBView9(generics.GenericAPIView, mixins.RetrieveModelMixin):
+class WatchlistRetrieveModelMixinView(generics.GenericAPIView, mixins.RetrieveModelMixin):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
 #=======================Views using UpdateModelMixin and GenericAPIView=====
-class WatchlistCBView10(generics.GenericAPIView, mixins.UpdateModelMixin):
+class WatchlistUpdateModelMixinView(generics.GenericAPIView, mixins.UpdateModelMixin):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
@@ -415,7 +406,7 @@ class WatchlistCBView10(generics.GenericAPIView, mixins.UpdateModelMixin):
         return self.update(request, *args, **kwargs)
     
 #=======================Views using DestroyModelMixin and GenericAPIView=====
-class WatchlistCBView11(generics.GenericAPIView, mixins.DestroyModelMixin):
+class WatchlistDestroyModelMixinView(generics.GenericAPIView, mixins.DestroyModelMixin):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
@@ -428,7 +419,7 @@ class WatchlistCBView11(generics.GenericAPIView, mixins.DestroyModelMixin):
         return self.destroy(request, *args, **kwargs)
     
 #=======================Views using CreateAPIView=======================
-class WatchlistCBView12(generics.CreateAPIView):
+class WatchlistCreateAPIView(generics.CreateAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
@@ -438,7 +429,7 @@ class WatchlistCBView12(generics.CreateAPIView):
         serializer.save()
 
 #=======================Views using ListAPIView=======================   
-class WatchlistCBView13(generics.ListAPIView):
+class WatchlistListAPIView(generics.ListAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
 
@@ -447,7 +438,7 @@ class WatchlistCBView13(generics.ListAPIView):
         return WatchList.objects.filter(active=True)
     
 #=======================Views using RetrieveAPIView====================
-class WatchlistCBView14(generics.RetrieveAPIView):
+class WatchlistRetrieveAPIView(generics.RetrieveAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     lookup_field = "title" # Set the lookup field to 'title' or any other field you prefer
@@ -459,7 +450,7 @@ class WatchlistCBView14(generics.RetrieveAPIView):
         return obj
     
 #=======================Views using DestroyAPIView====================
-class WatchlistCBView15(generics.DestroyAPIView):
+class WatchlistDestroyAPIView(generics.DestroyAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     lookup_field = "title" # Set the lookup field to 'title' or any other field you prefer
@@ -476,32 +467,32 @@ class WatchlistCBView15(generics.DestroyAPIView):
         return Response({"detail": "WatchList object deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
     
 #=======================Views using UpdateAPIView======================
-class WatchlistCBView16(generics.UpdateAPIView):
+class WatchlistUpdateAPIView(generics.UpdateAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
 #=======================Views using ListCreateAPIView======================
-class WatchlistCBView17(generics.ListCreateAPIView):
+class WatchlistListCreateAPIView(generics.ListCreateAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
 #=======================Views using RetrieveUpdateAPIView======================
-class WatchlistCBView18(generics.RetrieveUpdateAPIView):
+class WatchlistRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
 #=======================Views using RetrieveDestroyAPIView======================
-class WatchlistCBView19(generics.RetrieveDestroyAPIView):
+class WatchlistRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
 #=======================Views using RetrieveUpdateDestroyAPIView======================
-class WatchlistCBView20(generics.RetrieveUpdateDestroyAPIView):
+class WatchlistRudAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
 
 #=======================Views using MultipleFieldLookupMixin======================
-class WatchlistCBView21(MultipleFieldLookupMixin, generics.RetrieveAPIView):
+class WatchlistMFLMixinView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     """
     Retrieve a WatchList object using multiple field lookup.
     """
@@ -514,14 +505,14 @@ class WatchlistCBView21(MultipleFieldLookupMixin, generics.RetrieveAPIView):
     # Optionally, you can override other methods or add custom behavior as needed.
     
 #=======================Views using Custom Base class======================
-class WatchListBaseView1():
+class WatchListBaseView():
     """
     Custom base view class for WatchList.
     """
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
-class WatchlistCBView22(WatchListBaseView1, generics.ListAPIView):
+class WatchlistIListAPIView(WatchListBaseView, generics.ListAPIView):
     """
     View to list Watchlist or to create a new watchlist
     """
@@ -529,7 +520,7 @@ class WatchlistCBView22(WatchListBaseView1, generics.ListAPIView):
     # Add view-specific logic here
 
 
-class WatchlistCBView23(WatchListBaseView1, generics.CreateAPIView):
+class WatchlistICreateAPIView(WatchListBaseView, generics.CreateAPIView):
     """
     View to list Watchlist or to create a new watchlist
     """
