@@ -5,10 +5,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from chapter3_project_setup.models import WatchList, Review, StreamPlatform
-from . import serializers
+from chapter9_authentication.api import serializers
 
 
-class WatchListViewSet1(viewsets.ModelViewSet):
+class WatchListViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]  # Ensure that the user is authenticated
     queryset = WatchList.objects.all()
@@ -23,11 +23,11 @@ def stream_platform_view(request, format=None):
     }
     return Response(content)
     
-class StreamPlatformViewSet1(viewsets.ModelViewSet):
+class StreamPlatformViewSet(viewsets.ModelViewSet):
     queryset = StreamPlatform.objects.all()
     serializer_class = serializers.StreamPlatformModelSerializer
     
-class ReviewViewSet1(viewsets.ModelViewSet):
+class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = serializers.ReviewModelSerializer
     

@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from chapter3_project_setup.models import WatchList, Review, StreamPlatform
-from . import serializers
+from chapter8_validators.api import serializers
 
 class WatchListViewSet(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
