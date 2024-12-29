@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import mixins
+from rest_framework.decorators import api_view
 
 
 from django.http import Http404
@@ -526,3 +527,46 @@ class WatchlistICreateAPIView(WatchListBaseView, generics.CreateAPIView):
     """
     pass
     # Add view-specific logic here
+    
+################################Function Based Views##############################
+@api_view(['GET', 'POST'])
+def watchlist_list(request):
+    # Handle GET requests
+    if request.method == 'GET':
+        watchlists = WatchList.objects.all()
+        serializer = serializers.WatchListModelSerializer(watchlists, many=True, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # Handle POST requests
+    elif request.method == 'POST':
+        serializer = serializers.WatchListModelSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+@api_view(['GET', 'PUT', 'DELETE'])
+def watchlist_detail(request, pk):
+    try:
+        watchlist = WatchList.objects.get(pk=pk)
+    except WatchList.DoesNotExist:
+        return Response({"error": "Watchlist not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    # Handle GET request
+    if request.method == 'GET':
+        serializer = serializers.WatchListModelSerializer(watchlist, context={'request': request})
+        return Response(serializer.data)
+
+    # Handle PUT request
+    elif request.method == 'PUT':
+        serializer = serializers.WatchListModelSerializer(watchlist, data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Handle DELETE request
+    elif request.method == 'DELETE':
+        watchlist.delete()
+        return Response({"message": "Watchlist deleted successfully."}, status=status.HTTP_204_NO_CONTENT)

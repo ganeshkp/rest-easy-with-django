@@ -77,4 +77,8 @@ urlpatterns = [
     path('watchlist-inherited-list-api/', views.WatchlistIListAPIView.as_view(), name="watchlist-inherited-list-api"),
     path('watchlist-inherited-create-api/', views.WatchlistICreateAPIView.as_view(), name="watchlist-inherited-create-api"),
     
+    #Function Based Views
+    path('watchlists/', views.watchlist_list, name="watchlist-list"),
+    path('watchlists/<int:pk>/', views.watchlist_detail, name="watchlist-detail"),
+    
 ]
