@@ -7,7 +7,7 @@ from rest_framework.validators import ( UniqueValidator,
                                         UniqueTogetherValidator,
                                         UniqueForDateValidator,
                                     )
-from . import validators
+from chapter8_validators.api import validators
 
 User = get_user_model()
 

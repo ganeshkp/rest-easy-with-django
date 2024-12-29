@@ -2,8 +2,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from rest_framework import generics
-from rest_framework import filters
-from rest_framework.pagination import PageNumberPagination
 from rest_framework import mixins
 from rest_framework.decorators import action
 from django.db import transaction
@@ -12,7 +10,7 @@ from . import serializers
 
 
 #=======================Views using ViewSets======================
-class WatchListViewSet1(viewsets.ViewSet):
+class WatchListViewSet(viewsets.ViewSet):
     queryset = WatchList.objects.all()
     def list(self, request):        
         serializer = serializers.WatchListModelSerializer(self.queryset, many=True, context={"request":request})
@@ -58,7 +56,7 @@ class WatchListViewSet1(viewsets.ViewSet):
         return Response({"movies":movies, "series":series})
 
 #=======================Views using GenericViewSet======================
-class WatchListViewSet2(
+class WatchListGenericViewSet(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
     mixins.RetrieveModelMixin,
@@ -81,7 +79,7 @@ class WatchListViewSet2(
         return Response({"movies":movies, "series":series})
     
 #=======================Views using ModelViewSet======================
-class WatchListViewSet3(viewsets.ModelViewSet):
+class WatchListModelViewSet(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
@@ -97,7 +95,7 @@ class WatchListViewSet3(viewsets.ModelViewSet):
         return Response({"movies":movies, "series":series})
     
     
-class StreamPlatformViewSet3(viewsets.ModelViewSet):
+class StreamPlatformModelViewSet(viewsets.ModelViewSet):
     queryset = StreamPlatform.objects.all()
     serializer_class = serializers.StreamPlatformModelSerializer
     
@@ -167,25 +165,21 @@ class StreamPlatformViewSet3(viewsets.ModelViewSet):
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response({'message': 'Bulk delete successful'})
-    
-    
-    
-    
+        return Response({'message': 'Bulk delete successful'})    
     
 #=======================Views using ReadOnlyModelViewSet======================
-class WatchListViewSet4(viewsets.ReadOnlyModelViewSet):
+class WatchListReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer
     
-#=======================Views using ModelViewSet======================
-class WatchListViewSet5(viewsets.ModelViewSet):
+#==================Views using ModelViewSet with HyperlinkedModelSerializer=====
+class WatchListHLMSViewset(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
-    serializer_class = serializers.WatchListHyperlinkedModelSerializer1
+    serializer_class = serializers.WatchListHyperlinkedModelSerializer
     
-class StreamPlatformViewSet5(viewsets.ModelViewSet):
+class StreamPlatformHLMSViewset(viewsets.ModelViewSet):
     queryset = StreamPlatform.objects.all()
-    serializer_class = serializers.StreamPlatformHyperlinkedModelSerializer1
+    serializer_class = serializers.StreamPlatformHyperlinkedModelSerializer
 
 
 ################################Function Based Views##############################

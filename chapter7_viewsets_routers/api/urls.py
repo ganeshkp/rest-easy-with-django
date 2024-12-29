@@ -1,30 +1,30 @@
 from django.urls import path, include
-from watchlist_app.api import views
 from rest_framework.routers import DefaultRouter
-from watchlist_app.api.custom_routers import CustomRouter1
+from chapter7_viewsets_routers.api import views
+from chapter7_viewsets_routers.api.custom_routers import CustomRouter
 
 router = DefaultRouter()
+
 # Using ViewSet
-router.register(r"watchlist-viewset1", views.WatchListViewSet1)
+router.register(r"watchlist-viewset", views.WatchListViewSet, basename="c7-watchlist-viewset")
 
 # Using GenericViewSet
-router.register(r"watchlist-viewset2", views.WatchListViewSet2, basename="watchlist-viewset2")
+router.register(r"watchlist-generic-viewset", views.WatchListGenericViewSet, basename="watchlist-generic-viewset")
 
 # Using ModelViewSet
-router.register(r"watchlist-viewset3", views.WatchListViewSet3, basename="watchlist_viewset3")
-router.register(r"streamplatform-viewset3", views.StreamPlatformViewSet3, basename="streamplatform_viewset3")
+router.register(r"watchlist-model-viewset", views.WatchListModelViewSet, basename="watchlist-model-viewset")
+router.register(r"streamplatform-model-viewset", views.StreamPlatformModelViewSet, basename="streamplatform-model-viewset")
 
 # Using ReadOnlyModelViewSet
-router.register(r"watchlist-viewset4", views.WatchListViewSet4, basename="watchlist_viewset4")
-
+router.register(r"watchlist-readonly-model-viewset", views.WatchListReadOnlyModelViewSet, basename="watchlist-readonly-model-viewset")
 
 # Using HyperLinkedModelSerializer
 router1 = DefaultRouter()
-router1.register(r"watchlist-viewset5", views.WatchListViewSet5, basename="watchlist-viewset5")
-router1.register(r"streamplatform-viewset5", views.StreamPlatformViewSet5, basename="streamplatform-viewset5")
+router1.register(r"watchlist-hlms-viewset", views.WatchListHLMSViewset, basename="watchlist-hlms-viewset")
+router1.register(r"streamplatform-hlms-viewset", views.StreamPlatformHLMSViewset, basename="streamplatform-hlms-viewset")
 
-router2 = CustomRouter1()
-router2.register(r"streamplatform-viewset3-custom", views.StreamPlatformViewSet3, basename="streamplatform_viewset3_custom")
+router2 = CustomRouter()
+router2.register(r"streamplatform-custom-viewset", views.StreamPlatformModelViewSet, basename="streamplatform-custom-viewset")
 
 urlpatterns = [   
     # Using ViewSet
@@ -34,9 +34,5 @@ urlpatterns = [
     path('', include((router1.urls, 'app_name'), namespace='instance_name')),
     
     # Using CustomRouter1
-    path("", include(router2.urls)),
-    
+    path("", include(router2.urls)),    
 ]
-
-# urlpatterns += router.urls
-# urlpatterns += router2.urls
