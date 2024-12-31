@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
-from chapter3_project_setup.models import WatchList, StreamPlatform, Review
+from chapter3_project_setup.models import WatchList
 
 class WatchListModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,14 +11,5 @@ class WatchListEnhancedSerializer(serializers.ModelSerializer):
         model = WatchList
         fields = ("title", "storyline", "platform", "category")
     
-class StreamPlatformModelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StreamPlatform
-        fields = "__all__"
 
-class ReviewModelSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
-    class Meta:
-        model = Review
-        fields = "__all__"
               
