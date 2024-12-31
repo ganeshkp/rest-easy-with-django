@@ -9,8 +9,6 @@ from rest_framework.validators import ( UniqueValidator,
                                     )
 from chapter8_validators.api import validators
 
-User = get_user_model()
-
 class WatchListModelSerializer(serializers.ModelSerializer):
     title = serializers.CharField(max_length=50, validators=[UniqueValidator(queryset=WatchList.objects.all()), validators.validate_watchlist_title])
     

@@ -2,8 +2,7 @@
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth import get_user_model
-from chapter3_project_setup.models import WatchList, Review, StreamPlatform
+from chapter3_project_setup.models import WatchList
 from chapter14_pagination.api import serializers
 from chapter14_pagination.api.pagination import (WatchListPageNumberPagination, 
                                                  CustomLimitOffsetPagination,
@@ -11,8 +10,6 @@ from chapter14_pagination.api.pagination import (WatchListPageNumberPagination,
                                                  CustomBasePagination,
                                                  CustomPNPagination)
 
-
-User = get_user_model()
 
 class WatchListGlobalPageNumberPaginationViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]

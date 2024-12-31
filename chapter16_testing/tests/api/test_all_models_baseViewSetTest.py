@@ -42,8 +42,6 @@ sorted_review_keys = [
 ]
 
 
-User = get_user_model()
-
 # Base Test Class
 class BaseViewSetTest(APITestCase):
     """

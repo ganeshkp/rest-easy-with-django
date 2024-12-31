@@ -14,8 +14,6 @@ from chapter3_project_setup.models import WatchList
 from chapter11_caching.api import serializers
 from chapter11_caching.api.mixins import CacheMixin
 
-User = get_user_model()
-
 #----------------------------------------------------------------
 class WatchlistCachingView(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication,]

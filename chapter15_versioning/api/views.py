@@ -10,8 +10,6 @@ from chapter3_project_setup.models import WatchList
 from chapter15_versioning.api import serializers
 from chapter15_versioning.api.versioning import XAPIVersionScheme
 
-User = get_user_model()
-
 class WatchListUrlPathVersioningViewSet(viewsets.ModelViewSet):
     queryset = WatchList.objects.all()
     serializer_class = serializers.WatchListModelSerializer

@@ -6,7 +6,6 @@ from tests.factories.user_factories import UserFactory
 from chapter16_testing.tests.factories.watchlist_factories import WatchListFactory
 
 fake = Faker()
-User = get_user_model()
 
 class ReviewFactory(factory.django.DjangoModelFactory):
     class Meta:

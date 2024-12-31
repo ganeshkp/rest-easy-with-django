@@ -13,7 +13,6 @@ from chapter3_project_setup.models import WatchList, Review, StreamPlatform
 from chapter10_permissions.api import serializers
 from chapter10_permissions.api.permissions import IsReviewUserOrReadOnly, IsAdminOrReadOnly, MultiplePermissionsRequired, CustomDjangoObjectPermissions
 
-User = get_user_model()
 
 #----------------------------------------------------------------
 #AllowAny

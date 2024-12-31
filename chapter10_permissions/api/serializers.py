@@ -3,8 +3,6 @@ from django.contrib.auth import get_user_model
 from chapter3_project_setup.models import WatchList, StreamPlatform, Review
 
 
-User = get_user_model()
-
 class WatchListModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = WatchList

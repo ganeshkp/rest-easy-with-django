@@ -8,8 +8,6 @@ from rest_framework.permissions import IsAuthenticated
 from chapter3_project_setup.models import WatchList, StreamPlatform, Review
 from chapter16_testing.api import serializers
 
-User = get_user_model()
-
 class WatchListViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
