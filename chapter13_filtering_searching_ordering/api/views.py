@@ -1,19 +1,14 @@
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.views import APIView
-from django.contrib.auth import get_user_model
 from rest_framework import generics
-from chapter3_project_setup.models import WatchList, Review, StreamPlatform
+from chapter3_project_setup.models import WatchList, Review
 from chapter13_filtering_searching_ordering.api import serializers
 from chapter13_filtering_searching_ordering.api.filters import IsReviewOwnerFilterBackend, WatchlistCategoryFilter
-
-User = get_user_model()
 
 #Filtering against the current user----------------------------------------------------
 class ReviewsListCurrentUserFilterView(generics.ListAPIView):
