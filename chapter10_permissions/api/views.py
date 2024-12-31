@@ -1,5 +1,4 @@
 from rest_framework import viewsets
-from rest_framework.exceptions import ValidationError
 from rest_framework.authentication import BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -8,9 +7,8 @@ from rest_framework import status
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.permissions import DjangoObjectPermissions
-from rest_framework.viewsets import ModelViewSet
 from django.contrib.auth import get_user_model
-from guardian.shortcuts import assign_perm, get_perms
+from guardian.shortcuts import assign_perm
 from chapter3_project_setup.models import WatchList, Review, StreamPlatform
 from chapter10_permissions.api import serializers
 from chapter10_permissions.api.permissions import IsReviewUserOrReadOnly, IsAdminOrReadOnly, MultiplePermissionsRequired, CustomDjangoObjectPermissions
@@ -141,7 +139,7 @@ class ReviewDetailCustomPermissionView(generics.RetrieveUpdateDestroyAPIView):
     
 #-------------------------------------------------------------------------------
 # Gets all review lists for authenticated users   
-class ReviewList1(generics.ListAPIView):
+class ReviewList(generics.ListAPIView):
     serializer_class = serializers.ReviewModelSerializer
     permission_classes = [IsAuthenticated]
 

@@ -21,3 +21,8 @@ class ReviewModelSerializer(serializers.ModelSerializer):
         model = Review
         fields = "__all__"
               
+
+
+
+
+
