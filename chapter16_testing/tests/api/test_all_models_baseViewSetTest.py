@@ -2,7 +2,6 @@ from copy import deepcopy
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from rest_framework import status
-from django.contrib.auth import get_user_model
 from django.urls import reverse
 from chapter3_project_setup.models import WatchList, StreamPlatform, Review
 from chapter16_testing.tests.factories.watchlist_factories import WatchListFactory
