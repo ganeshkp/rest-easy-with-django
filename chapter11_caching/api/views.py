@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie, vary_on_headers
 from django.core.cache import cache
-from chapter3_project_setup.models import WatchList, Review, StreamPlatform
+from chapter3_project_setup.models import WatchList
 from chapter11_caching.api import serializers
 from chapter11_caching.api.mixins import CacheMixin
 
@@ -95,7 +95,7 @@ class WatchListCacheMixinDetailView(CacheMixin, APIView):
         cache_key = f"watchlist_{pk}"  # Define a unique cache key per watchlist object
         try:
             queryset = self.get_cached_response(
-                cache_key, WatchList.objects.get(pk=pk)
+                cache_key, WatchList.objects.get(id=pk)
             )
         except WatchList.DoesNotExist:
             return Response(
@@ -106,6 +106,7 @@ class WatchListCacheMixinDetailView(CacheMixin, APIView):
     
 #------------------------------------------------------------------------
 class WatchListVaryOnHeaderCacheView(APIView):
+    authentication_classes = [TokenAuthentication,]
     permission_classes = [IsAuthenticated]  # Only authenticated users can access
 
     # Apply caching for 15 minutes and vary based on Authorization header

@@ -3,7 +3,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
 from chapter3_project_setup.models import WatchList, StreamPlatform, Review
-from chapter11_caching.api import serializers
+from chapter12_throttling.api import serializers
 from chapter12_throttling.api.throttling import CustomCacheRateThrottle, ExceptionCustomMessageThrottle
 
 #----------------------------------------------------------------
