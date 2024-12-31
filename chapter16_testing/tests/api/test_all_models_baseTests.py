@@ -50,7 +50,7 @@ class WatchListViewSetAPITest(unittest.TestCase):
         response = view(request)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), WatchList.objects.count())
+        self.assertEqual(len(response.data), WatchList.objects.count())
 
     def test_list_watchlist_unauthenticated(self):
         """Test the list endpoint without authentication."""
@@ -154,7 +154,7 @@ class StreamPlatformViewSetTest(APITestCase):
         #reverse arguments are reverse(basename-list)
         response = self.client.get(reverse("stream-platforms-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(len(response.data), 1)
         
     def test_streamplatform_get_all_unauthenticated(self):
         self.client.credentials() #unauthenticate the user
@@ -232,7 +232,7 @@ class ReviewViewSetTest(APITestCase):
     def test_review_get_all(self):
         response = self.client.get("/api/chapter16_testing/reviews/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data["results"]), 1)
+        self.assertEqual(len(response.data), 1)
 
     def test_review_get_single(self):
         response = self.client.get(f"/api/chapter16_testing/reviews/{self.review.id}/")

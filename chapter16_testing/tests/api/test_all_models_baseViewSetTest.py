@@ -79,7 +79,7 @@ class WatchListViewSetTest(BaseViewSetTest):
     def test_watchlist_get_all(self):
         response = self.client.get("/api/chapter16_testing/watchlists/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(sorted(response.data["results"][0].keys()), sorted_watchlist_keys)
+        self.assertEqual(sorted(response.data[0].keys()), sorted_watchlist_keys)
         
     def test_watchlist_get_all_unauthenticated_user(self):
         self.unauthenticate_client()
@@ -127,7 +127,7 @@ class StreamPlatformViewSetTest(BaseViewSetTest):
         #reverse arguments are reverse(basename-list)
         response = self.client.get(reverse("stream-platforms-list"))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(sorted(response.data["results"][0].keys()), sorted_streamplatform_keys)
+        self.assertEqual(sorted(response.data[0].keys()), sorted_streamplatform_keys)
 
     def test_streamplatform_get_single(self):
         #reverse arguments are reverse(basename-detail)
@@ -163,7 +163,7 @@ class ReviewViewSetTest(BaseViewSetTest):
     def test_review_get_all(self):
         response = self.client.get("/api/chapter16_testing/reviews/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(sorted(response.data["results"][0].keys()), sorted_review_keys)
+        self.assertEqual(sorted(response.data[0].keys()), sorted_review_keys)
 
     def test_review_get_single(self):
         response = self.client.get(f"/api/chapter16_testing/reviews/{self.review.id}/")

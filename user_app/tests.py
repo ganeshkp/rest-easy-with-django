@@ -24,19 +24,23 @@ class RegisterTestCase(APITestCase):
 class LoginLogoutTestCase(APITestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(username="example",
-                                             password="NewPassword@123")
+        self.user = User.objects.create_user(username="test",
+                                             password="user@test")
+        
+    def tearDown(self):
+        self.user.delete()
 
     def test_login(self):
         data = {
-            "username": "example",
-            "password": "NewPassword@123"
+            "username": "test",
+            "password": "user@test"
         }
         response = self.client.post(reverse('login'), data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_logout(self):
-        self.token = Token.objects.get(user__username="example")
+        self.client.login(username=self.user.username, password=self.user.password)
+        self.token = Token.objects.get(user__username=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
         response = self.client.post(reverse('logout'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
