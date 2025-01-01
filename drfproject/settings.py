@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'guardian',
     'django_filters',
     'drf_spectacular',
+    'drf_spectacular_sidecar',  # required for Django collectstatic discovery
+    'drf_yasg',
 
     "chapter3_project_setup",
     "chapter6_serializers_views",
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
     "chapter14_pagination",
     "chapter15_versioning",
     "chapter16_testing",
+    "chapter17_documenting",
 ]
 
 MIDDLEWARE = [
@@ -191,9 +194,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'DRF Book APIs',
+    'DESCRIPTION': 'DRF Book APIs Documentation',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
+    'SWAGGER_UI_DIST': 'SIDECAR',  # shorthand to use the sidecar instead
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
 }

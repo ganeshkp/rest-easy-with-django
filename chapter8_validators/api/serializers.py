@@ -25,6 +25,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
                           missing_message=_("This field is required.")
                       )
                     ]
+        ref_name = 'C8WatchListModelSerializer'
         
     
 class StreamPlatformModelSerializer(serializers.ModelSerializer):
@@ -39,6 +40,7 @@ class StreamPlatformModelSerializer(serializers.ModelSerializer):
                 fields=['name', 'website']
             )
         ]
+        ref_name = 'C8StreamPlatformModelSerializer'
 
 class ReviewModelSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
@@ -59,4 +61,4 @@ class ReviewModelSerializer(serializers.ModelSerializer):
                 date_field='review_date'
             )
         ]
-        
+        ref_name = 'C8ReviewModelSerializer'

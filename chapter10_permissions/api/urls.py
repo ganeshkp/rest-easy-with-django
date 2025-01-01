@@ -17,7 +17,6 @@ router.register(r"watchlist-objectpermissionmapview", views.WatchListObjectPermi
 
 urlpatterns = [   
     path(r"stream-platform", views.stream_platform_isauthenticated_view),
-    path('<int:pk>/reviews/', views.ReviewList.as_view(), name='review-list'),
     path('reviews/<int:pk>/', views.ReviewDetailCustomPermissionView.as_view(), name='review-detail'),
     path('watchlist/', views.WatchlistCustomPermissionView.as_view(), name='watchlist'),
     

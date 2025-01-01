@@ -16,6 +16,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = WatchList
         fields = "__all__"  
+        ref_name = 'C7WatchListModelSerializer'
 
     
 class StreamPlatformModelSerializer(serializers.ModelSerializer):
@@ -23,6 +24,7 @@ class StreamPlatformModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = StreamPlatform
         fields = "__all__"
+        ref_name = 'C7StreamPlatformModelSerializer'
 
 class ReviewModelSerializer(serializers.ModelSerializer):
     review_user = serializers.StringRelatedField(read_only=True)
@@ -30,6 +32,7 @@ class ReviewModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = "__all__"
+        ref_name = 'C7ReviewModelSerializer'
 
 ################ Create HyperLinkedModelSerializer to use it for ModelViewSet##############
 class WatchListHyperlinkedModelSerializer(serializers.HyperlinkedModelSerializer):

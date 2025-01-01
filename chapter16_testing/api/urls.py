@@ -1,8 +1,6 @@
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
-
-from . import views
-
+from chapter16_testing.api import views
 
 router = DefaultRouter()
 # Using ViewSet

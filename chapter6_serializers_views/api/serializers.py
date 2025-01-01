@@ -109,6 +109,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'imdb_rating': {'validators':[MinValueValidator(1.0), MaxValueValidator(10.0)]}
         }
+        ref_name = 'C6WatchListModelSerializer'
         
         
     def get_full_title(self, obj):
@@ -151,6 +152,7 @@ class StreamPlatformModelSerializer(serializers.ModelSerializer):
             'about':{'allow_null':True, 'default':""},
             'website':{'required': False}
         }
+        ref_name = 'C6StreamPlatformModelSerializer'
 
 class ReviewModelSerializer(serializers.ModelSerializer):
     review_user = serializers.StringRelatedField(read_only=True)
@@ -159,6 +161,8 @@ class ReviewModelSerializer(serializers.ModelSerializer):
         model = Review
         exclude = ('watchlist',)
         # fields = "__all__"
+        ref_name = 'C6ReviewModelSerializer'
+        
         
 #############################HyperlinkedModelSerializer#########################
 

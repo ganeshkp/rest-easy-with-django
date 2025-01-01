@@ -134,18 +134,3 @@ class ReviewDetailCustomPermissionView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = serializers.ReviewModelSerializer
     permission_classes = [IsReviewUserOrReadOnly]
-    
-    
-#-------------------------------------------------------------------------------
-# Gets all review lists for authenticated users   
-class ReviewList(generics.ListAPIView):
-    serializer_class = serializers.ReviewModelSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        pk = self.kwargs['pk']
-        return Review.objects.filter(watchlist=pk)
-
-
-            
-    

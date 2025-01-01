@@ -5,6 +5,7 @@ class WatchListModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = WatchList
         fields = "__all__"
+        ref_name = 'C15WatchListModelSerializer'
         
 class WatchListEnhancedSerializer(serializers.ModelSerializer):
     class Meta:
