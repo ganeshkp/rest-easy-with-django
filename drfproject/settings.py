@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'guardian',
     'django_filters',
+    'drf_spectacular',
 
-    # "watchlist_app",
     "chapter3_project_setup",
     "chapter6_serializers_views",
     "chapter7_viewsets_routers",
@@ -151,6 +151,8 @@ REST_FRAMEWORK = {
     # 'DEFAULT_VERSION': 'v1', # Default version if not explicitly specified
     # 'ALLOWED_VERSIONS': ['v1', 'v2'], # Define allowed versions
     # 'VERSION_PARAM': 'version',
+    
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 CACHES = {
@@ -187,3 +189,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
