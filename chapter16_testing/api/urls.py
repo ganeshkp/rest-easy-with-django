@@ -13,6 +13,8 @@ router.register(r"reviews", views.ReviewViewSet, basename="reviews")
 urlpatterns = [
     # Define versioned paths using a regex for versioning
     
+    path('watchlist-external/', views.WatchlistExternalView.as_view(), name='watchlist-external'),
+    
     # Using ViewSet
     path("", include(router.urls)),   
 ]
