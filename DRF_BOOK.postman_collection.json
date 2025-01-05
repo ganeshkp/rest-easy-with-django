@@ -290,16 +290,10 @@
 									"type": "noauth"
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Token {{token}}",
-										"type": "text"
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"Movie4\",\r\n    \"storyline\": \"Movie4 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"raw": "{\r\n    \"title\": \"Movie4\",\r\n    \"storyline\": \"Movie4 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": 1,\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -555,9 +549,6 @@
 					"item": [
 						{
 							"name": "Get all watchlists",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -570,15 +561,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "[\r\n    {\r\n        \"title\": \"Movie10\",\r\n        \"storyline\": \"Movie10 Story\",\r\n        \"active\": true,\r\n        \"platform\": \"2\",\r\n        \"imdb_rating\": 4.0,\r\n        \"episodes\": 0,\r\n        \"category\": \"MOVIE\"\r\n    },\r\n    {\r\n        \"title\": \"Series10\",\r\n        \"storyline\": \"Series10 Story\",\r\n        \"active\": true,\r\n        \"platform\": \"2\",\r\n        \"imdb_rating\": 4.0,\r\n        \"episodes\": 0,\r\n        \"category\": \"SERIES\"\r\n    }\r\n]",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-list-serializer/",
 									"host": [
@@ -732,7 +714,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n   \"info\": {\r\n       \"extra\": \"data\"\r\n   },\r\n   \"resource\": {\r\n    \"title\": \"Movie7\",\r\n    \"storyline\": \"Movie7 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"Netflix\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n    }\r\n}\r\n\r\n\r\n",
+									"raw": "{\r\n   \"info\": {\r\n       \"extra\": \"data\"\r\n   },\r\n   \"resource\": {\r\n    \"title\": \"Movie71\",\r\n    \"storyline\": \"Movie7 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"Netflix\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n    }\r\n}\r\n\r\n\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1031,20 +1013,21 @@
 									}
 								},
 								"url": {
-									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-generic-api/?title=Inception",
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-detail-generic-api/Inception",
 									"host": [
 										"{{domain}}"
 									],
 									"path": [
 										"api",
 										"chapter6_serializers_views",
-										"watchlist-generic-api",
-										""
+										"watchlist-detail-generic-api",
+										"Inception"
 									],
 									"query": [
 										{
-											"key": "title",
-											"value": "Inception"
+											"key": "search",
+											"value": "Inception",
+											"disabled": true
 										}
 									]
 								}
@@ -1314,7 +1297,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"Movie2-updated\",\r\n    \"storyline\": \"Movie2-updated Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"raw": "{\r\n    \"title\": \"Movie2-updated\",\r\n    \"storyline\": \"Movie2-updated Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1927,6 +1910,132 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "FunctionBasedViews",
+					"item": [
+						{
+							"name": "Get all Watchlists",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlists/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Watchlist",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"The Godfather\",\r\n    \"storyline\": \"The Godfather Story\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 9.2,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlists/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get single Watchlist",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlists/85/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlists",
+										"85",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1934,7 +2043,7 @@
 			"name": "Chapter7_Viewsets_and_Routers",
 			"item": [
 				{
-					"name": "api/watch/watchlist-viewset1/ using ViewSet",
+					"name": "ROOT_URL",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1960,44 +2069,62 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/watchlist-cbv-try22/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"watchlist-cbv-try22",
+								"chapter7_viewsets_routers",
 								""
-							],
-							"query": [
-								{
-									"key": "ordering",
-									"value": "title",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "Movie3",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "ordering",
-									"value": "imdb_rating",
-									"disabled": true
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "api/watch/watchlist-viewset2/ using GenericViewSet",
+					"name": "api/chapter7_viewsets_routers/watchlist-viewset/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie5\",\r\n    \"storyline\": \"Movie5 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"watchlist-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/watchlist-generic-viewset/watchlist_count",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2023,44 +2150,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/watchlist-viewset1/watchlist_count",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-generic-viewset/watchlist_count",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"watchlist-viewset1",
+								"chapter7_viewsets_routers",
+								"watchlist-generic-viewset",
 								"watchlist_count"
-							],
-							"query": [
-								{
-									"key": "ordering",
-									"value": "title",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "Movie3",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "ordering",
-									"value": "imdb_rating",
-									"disabled": true
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "api/watch/watchlist-viewset3/ using ModelViewSet",
+					"name": "api/chapter7_viewsets_routers/watchlist-model-viewset/",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2086,44 +2191,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/watchlist-viewset3/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-model-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"watchlist-viewset3",
+								"chapter7_viewsets_routers",
+								"watchlist-model-viewset",
 								""
-							],
-							"query": [
-								{
-									"key": "ordering",
-									"value": "title",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "Movie3",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "ordering",
-									"value": "imdb_rating",
-									"disabled": true
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "api/watch/watchlist-viewset4/ using ReadOnlyModelViewSet",
+					"name": "api/chapter7_viewsets_routers/watchlist-readonly-model-viewset",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2149,45 +2232,23 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/watchlist-viewset4/70/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-readonly-model-viewset/70/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"watchlist-viewset4",
+								"chapter7_viewsets_routers",
+								"watchlist-readonly-model-viewset",
 								"70",
 								""
-							],
-							"query": [
-								{
-									"key": "ordering",
-									"value": "title",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "Movie3",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "ordering",
-									"value": "imdb_rating",
-									"disabled": true
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "api/watch/watchlist-viewset5/ using HyperlinkedModelSerializer",
+					"name": "api/chapter7_viewsets_routers/watchlist-hlms-viewset/",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2213,44 +2274,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/watchlist-viewset5/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-hlms-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"watchlist-viewset5",
+								"chapter7_viewsets_routers",
+								"watchlist-hlms-viewset",
 								""
-							],
-							"query": [
-								{
-									"key": "ordering",
-									"value": "title",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "Movie3",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "ordering",
-									"value": "imdb_rating",
-									"disabled": true
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "api/watch/streamplatform-viewset5/ using HyperlinkedModelSerializer",
+					"name": "api/chapter7_viewsets_routers/streamplatform-hlms-viewset/",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2276,37 +2315,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset5/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-hlms-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset5",
+								"chapter7_viewsets_routers",
+								"streamplatform-hlms-viewset",
 								""
-							],
-							"query": [
-								{
-									"key": "ordering",
-									"value": "title",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "Movie3",
-									"disabled": true
-								},
-								{
-									"key": "search",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "ordering",
-									"value": "imdb_rating",
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -2327,14 +2344,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
 								""
 							]
 						}
@@ -2342,7 +2359,7 @@
 					"response": []
 				},
 				{
-					"name": "GET api/watch/streamplatform-viewset3/ get_watchlist action",
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/ get_watchlist action",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2368,15 +2385,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3/9/watchlist/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/1/watchlist/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3",
-								"9",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
+								"1",
 								"watchlist",
 								""
 							]
@@ -2385,12 +2402,12 @@
 					"response": []
 				},
 				{
-					"name": "PUT api/watch/streamplatform-viewset3/ bulk_update action",
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/ bulk_update action",
 					"request": {
 						"auth": {
 							"type": "noauth"
 						},
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
@@ -2408,14 +2425,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3/bulk-update/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/bulk-update/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
 								"bulk-update",
 								""
 							]
@@ -2424,7 +2441,7 @@
 					"response": []
 				},
 				{
-					"name": "DELETE api/watch/streamplatform-viewset3/ bulk_delete action",
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/ bulk_delete action",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2447,14 +2464,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3/bulk-delete/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/bulk-delete/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
 								"bulk-delete",
 								""
 							]
@@ -2463,7 +2480,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT api/watch/streamplatform-viewset3/ update_streamplatform action",
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/{pk}/watchlist/ update_streamplatform action",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2478,7 +2495,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"name\": \"Netflix_U1\",\r\n    \"about\": \"Netflix-updated1\",\r\n    \"website\": \"http://www.netflix2.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2486,23 +2503,24 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3/11/watchlist",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/1/watchlist/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3",
-								"11",
-								"watchlist"
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
+								"1",
+								"watchlist",
+								""
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GET api/watch/streamplatform-viewset3/ using CustomRouter1",
+					"name": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/ using CustomRouter",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2516,23 +2534,23 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3-custom/test1/9",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/test1/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3-custom",
+								"chapter7_viewsets_routers",
+								"streamplatform-custom-viewset",
 								"test1",
-								"9"
+								""
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GET api/watch/streamplatform-viewset3/ get_watchlist action using CustomRouter1",
+					"name": "api/chapter7_viewsets_routers/streamplatform-custom-viewset get_watchlist action using CustomRouter",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2558,16 +2576,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3-custom/test3/9/watchlist/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/test3/1/watchlist/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3-custom",
+								"chapter7_viewsets_routers",
+								"streamplatform-custom-viewset",
 								"test3",
-								"9",
+								"1",
 								"watchlist",
 								""
 							]
@@ -2576,7 +2594,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT api/watch/streamplatform-viewset3/ bulk_update action using CustomRouter1",
+					"name": "api/chapter7_viewsets_routers/streamplatform-custom-viewset bulk_update action using CustomRouter",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2599,14 +2617,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/watch/streamplatform-viewset3-custom/test2/bulk-update/",
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/test2/bulk-update/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"watch",
-								"streamplatform-viewset3-custom",
+								"chapter7_viewsets_routers",
+								"streamplatform-custom-viewset",
 								"test2",
 								"bulk-update",
 								""
@@ -2621,7 +2639,7 @@
 			"name": "Chapter8_Validators",
 			"item": [
 				{
-					"name": "api/chapter8_validators/watchlist-viewset1/",
+					"name": "api/chapter8_validators/watchlist-viewset/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2635,14 +2653,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter8_validators/watchlist-viewset1/",
+							"raw": "{{domain}}/api/chapter8_validators/watchlist-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter8_validators",
-								"watchlist-viewset1",
+								"watchlist-viewset",
 								""
 							]
 						}
@@ -2650,7 +2668,7 @@
 					"response": []
 				},
 				{
-					"name": "POST api/chapter8_validators/watchlist-viewset1/",
+					"name": "POST api/chapter8_validators/watchlist-viewset/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2673,14 +2691,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/chapter8_validators/watchlist-viewset1/",
+							"raw": "{{domain}}/api/chapter8_validators/watchlist-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter8_validators",
-								"watchlist-viewset1",
+								"watchlist-viewset",
 								""
 							]
 						}
@@ -2688,7 +2706,7 @@
 					"response": []
 				},
 				{
-					"name": "api/chapter8_validators/platform-viewset1/",
+					"name": "api/chapter8_validators/platform-viewset/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2702,14 +2720,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter8_validators/platform-viewset1/",
+							"raw": "{{domain}}/api/chapter8_validators/platform-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter8_validators",
-								"platform-viewset1",
+								"platform-viewset",
 								""
 							]
 						}
@@ -2717,7 +2735,7 @@
 					"response": []
 				},
 				{
-					"name": "POST api/chapter8_validators/platform-viewset1/",
+					"name": "POST api/chapter8_validators/platform-viewset/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2755,7 +2773,7 @@
 					"response": []
 				},
 				{
-					"name": "api/chapter8_validators/review-viewset1/",
+					"name": "api/chapter8_validators/review-viewset/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2769,14 +2787,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter8_validators/review-viewset1/",
+							"raw": "{{domain}}/api/chapter8_validators/review-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter8_validators",
-								"review-viewset1",
+								"review-viewset",
 								""
 							]
 						}
@@ -2784,7 +2802,7 @@
 					"response": []
 				},
 				{
-					"name": "POST api/chapter8_validators/review-viewset1/",
+					"name": "POST api/chapter8_validators/review-viewset/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2807,14 +2825,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/chapter8_validators/review-viewset1/",
+							"raw": "{{domain}}/api/chapter8_validators/review-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter8_validators",
-								"review-viewset1",
+								"review-viewset",
 								""
 							]
 						}
@@ -2827,7 +2845,7 @@
 			"name": "Chapter9_Authentication",
 			"item": [
 				{
-					"name": "api/chapter9_authentication/watchlist-viewset1/",
+					"name": "api/chapter9_authentication/watchlist-viewset/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -2841,14 +2859,102 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter8_validators/watchlist-viewset1/",
+							"raw": "{{domain}}/api/chapter9_authentication/watchlist-viewset/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
-								"chapter8_validators",
-								"watchlist-viewset1",
+								"chapter9_authentication",
+								"watchlist-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter9_authentication/streamplatforms/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter9_authentication/streamplatforms/1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter9_authentication",
+								"streamplatforms",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{domain}}/api/chapter9_authentication/review-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter9_authentication/review-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter9_authentication",
+								"review-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter9_authentication/streamplatforms/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter9_authentication/streamplatforms/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter9_authentication",
+								"streamplatforms",
 								""
 							]
 						}
@@ -3110,6 +3216,35 @@
 					"response": []
 				},
 				{
+					"name": "api/chapter10_permissions/watchlist-isauthenticatedorreadonly/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-isauthenticatedorreadonly/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-isauthenticatedorreadonly",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "api/chapter10_permissions/watchlist-isauthenticatedadmin/",
 					"request": {
 						"auth": {
@@ -3119,115 +3254,19 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"value": "Token {{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-isauthenticatedadmin/",
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-adminuser/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter10_permissions",
-								"watchlist-isauthenticatedadmin",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "api/chapter10_permissions/watchlist-viewset2",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-viewset2/",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"chapter10_permissions",
-								"watchlist-viewset2",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "api/chapter10_permissions/watchlist-viewset3",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-viewset3/",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"chapter10_permissions",
-								"watchlist-viewset3",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "api/chapter10_permissions/watchlist-viewset3",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-viewset3/",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"chapter10_permissions",
-								"watchlist-viewset3",
+								"watchlist-adminuser",
 								""
 							]
 						}
@@ -3278,19 +3317,7 @@
 					"name": "api/chapter10_permissions/watchlist",
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "test_password1",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "test_user1",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -3414,7 +3441,7 @@
 					"response": []
 				},
 				{
-					"name": "api/chapter10_permissions/1/reviews1",
+					"name": "api/chapter10_permissions/1/reviews",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -3440,7 +3467,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/1/reviews1",
+							"raw": "{{domain}}/api/chapter10_permissions/1/reviews",
 							"host": [
 								"{{domain}}"
 							],
@@ -3448,14 +3475,14 @@
 								"api",
 								"chapter10_permissions",
 								"1",
-								"reviews1"
+								"reviews"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "api/chapter10_permissions/reviews1/1",
+					"name": "api/chapter10_permissions/reviews/",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -3490,14 +3517,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/reviews1/1/",
+							"raw": "{{domain}}/api/chapter10_permissions/reviews/1/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter10_permissions",
-								"reviews1",
+								"reviews",
 								"1",
 								""
 							]
@@ -3506,7 +3533,7 @@
 					"response": []
 				},
 				{
-					"name": "api/chapter10_permissions/watchlist-objectpermissionview1/",
+					"name": "api/chapter10_permissions/watchlist-objectpermissionview/",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -3514,105 +3541,25 @@
 								"key": "Authorization",
 								"value": "Token 9ff355833a69cde9215752627e9f3ceda3265be7",
 								"description": "test_user2",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "Authorization",
-								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
-								"description": "test_user1",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview1/49/",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"chapter10_permissions",
-								"watchlist-objectpermissionview1",
-								"49",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "api/chapter10_permissions/watchlist-objectpermissionview1/",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
-								"description": "test_user1",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Movie1\",\r\n    \"storyline\": \"Movie1-Story\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-09-13T18:17:43.348311Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview1/",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"chapter10_permissions",
-								"watchlist-objectpermissionview1",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "api/chapter10_permissions/watchlist-objectpermissionview1/",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token 9ff355833a69cde9215752627e9f3ceda3265be7",
-								"description": "test_user2",
 								"type": "text"
 							},
 							{
 								"key": "Authorization",
 								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
 								"description": "test_user1",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Movie1\",\r\n    \"storyline\": \"Movie1-Story-update\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-10-26T20:06:27.406145Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview1/49/",
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview/49/",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"api",
 								"chapter10_permissions",
-								"watchlist-objectpermissionview1",
+								"watchlist-objectpermissionview",
 								"49",
 								""
 							]
@@ -3628,12 +3575,13 @@
 							{
 								"key": "Authorization",
 								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"description": "test_user1",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Movie2\",\r\n    \"storyline\": \"Movie2-Story\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-09-13T18:17:43.348311Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
+							"raw": "{\r\n    \"title\": \"Movie1\",\r\n    \"storyline\": \"Movie1-Story\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-09-13T18:17:43.348311Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3662,13 +3610,14 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"value": "Token {{token}}",
+								"description": "ganeshp",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Movie2\",\r\n    \"storyline\": \"Movie2-Story-updated\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-10-26T23:24:31.683138Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
+							"raw": "{\r\n    \"title\": \"Movie1\",\r\n    \"storyline\": \"Movie1-Story-update\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-10-26T20:06:27.406145Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3676,7 +3625,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview/50/",
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview/49/",
 							"host": [
 								"{{domain}}"
 							],
@@ -3684,7 +3633,7 @@
 								"api",
 								"chapter10_permissions",
 								"watchlist-objectpermissionview",
-								"50",
+								"49",
 								""
 							]
 						}
@@ -3698,16 +3647,16 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token 9ff355833a69cde9215752627e9f3ceda3265be7",
+								"value": "Token {{token}}",
 								"description": "test_user2",
-								"type": "text",
-								"disabled": true
+								"type": "text"
 							},
 							{
 								"key": "Authorization",
 								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
 								"description": "test_user1",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -3762,6 +3711,18 @@
 									"key": "password",
 									"value": "ganeshp",
 									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "test_user2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "Ganesh@11",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -3985,6 +3946,9 @@
 				{
 					"name": "api/chapter11_caching/watchlist-varyonheadercache",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -4849,7 +4813,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter14_pagination/watchlist-custom-base/?page=1&page_size=5",
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-custom-base/?page=1&page_size=3",
 							"host": [
 								"{{domain}}"
 							],
@@ -4866,7 +4830,7 @@
 								},
 								{
 									"key": "page_size",
-									"value": "5"
+									"value": "3"
 								}
 							]
 						}
@@ -4981,7 +4945,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/api/chapter15_versioning/watchlist-queryparam?version=1.0",
+							"raw": "{{domain}}/api/chapter15_versioning/watchlist-queryparam",
 							"host": [
 								"{{domain}}"
 							],
@@ -4993,7 +4957,8 @@
 							"query": [
 								{
 									"key": "version",
-									"value": "1.0"
+									"value": "1.0",
+									"disabled": true
 								}
 							]
 						}
@@ -5109,6 +5074,73 @@
 					"response": []
 				},
 				{
+					"name": "api/chapter16_testing/watchlist-external/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter16_testing/watchlist-external/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter16_testing",
+								"watchlist-external",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter16_testing/watchlist-external/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie4\",\r\n    \"storyline\": \"Movie4 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": 1,\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter16_testing/watchlist-external/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter16_testing",
+								"watchlist-external",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "api/chapter16_testing/stream-platforms/",
 					"request": {
 						"auth": {
@@ -5138,7 +5170,7 @@
 					"response": []
 				},
 				{
-					"name": "api/chapter16_testing/stream-platforms/ Copy",
+					"name": "api/chapter16_testing/reviews/",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -5160,6 +5192,70 @@
 								"api",
 								"chapter16_testing",
 								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter17_documenting",
+			"item": [
+				{
+					"name": "api/chapter17_documenting/watchlists/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter17_documenting/c17-watchlists/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter17_documenting",
+								"c17-watchlists",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter17_documenting/watchlists/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter17_documenting/c17-watchlists/50/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter17_documenting",
+								"c17-watchlists",
+								"50",
 								""
 							]
 						}
