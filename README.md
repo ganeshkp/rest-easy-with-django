@@ -1,2 +1,2 @@
-# rest-easy-with-django
-rest-easy-with-django
+# drf_book
+DRF Book

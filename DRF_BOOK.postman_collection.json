@@ -1,0 +1,5268 @@
+{
+	"info": {
+		"_postman_id": "d9a4a32e-c3b8-4a0e-89ef-434ed53ee6d5",
+		"name": "DRF_BOOK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7236286"
+	},
+	"item": [
+		{
+			"name": "Chapter6_Serializers_and_Views",
+			"item": [
+				{
+					"name": "Basic Serializer",
+					"item": [
+						{
+							"name": "Get all Watchlists",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-basic-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-basic-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Single Watchlist object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-detail-basic-serializer/63/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-detail-basic-serializer",
+										"63",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a  new Watchlist object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"Disneyplus\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-basic-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-basic-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get single Streamplatform object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/streamplatform-detail-basic-serializer/1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"streamplatform-detail-basic-serializer",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Watchlist object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3 Updated\",\r\n    \"storyline\": \"Movie3 Story Updated\",\r\n    \"active\": true,\r\n    \"platform\": \"Disneyplus\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-detail-basic-serializer/64/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-detail-basic-serializer",
+										"64",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Partial Update Watchlist object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"storyline\": \"Movie1 Storyline updated for patch request\",\r\n    \"active\": false\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-detail-basic-serializer/64/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-detail-basic-serializer",
+										"64",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Partial Update Watchlist object Copy",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"storyline\": \"Movie1 Storyline updated for patch request\",\r\n    \"active\": false\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-detail-basic-serializer/64/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-detail-basic-serializer",
+										"64",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Reviews",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/reviewlist-basic-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"reviewlist-basic-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ModelSerializer",
+					"item": [
+						{
+							"name": "Get all Watchlists",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-model-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-model-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a new Watchlist object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie4\",\r\n    \"storyline\": \"Movie4 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": 1,\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-model-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-model-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Streamplatforms",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/streamplatform-cbv-try2/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"streamplatform-cbv-try2",
+										""
+									]
+								},
+								"description": "### Retrieve Stream Platform Data\n\nThis endpoint allows users to retrieve data related to the stream platform using a HTTP GET request.\n\n#### Request\n\nThe request does not require a request body. It should be sent to the following endpoint:\n\n```\n{{domain}}/api/chapter6_serializers_views/streamplatform-cbv-try2/\n\n ```\n\n#### Response\n\nThe response will be a JSON object conforming to the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"platform_name\": {\n      \"type\": \"string\"\n    },\n    \"platform_url\": {\n      \"type\": \"string\"\n    },\n    \"platform_description\": {\n      \"type\": \"string\"\n    }\n  }\n}\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a single Streamplatform object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/streamplatform-detail-cbv-try2/1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"streamplatform-detail-cbv-try2",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a new Streamplatform",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Netflix2\",\r\n    \"about\": \"Netflix2 Platform\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/streamplatform-cbv-try2/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"streamplatform-cbv-try2",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "HyperlinkedModelSerializer",
+					"item": [
+						{
+							"name": "Get all Watchlists",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-hm-serializer",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-hm-serializer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Single Watchlist object",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-detail-hm-serializer/63/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-detail-hm-serializer",
+										"63",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Single Streamplatform object",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/streamplatform-detail-hm-serializer/1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"streamplatform-detail-hm-serializer",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ListSerializer",
+					"item": [
+						{
+							"name": "Get all watchlists",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-list-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-list-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create One watchlist",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie12\",\r\n    \"storyline\": \"Movie12 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 4.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-list-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-list-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create multiple watchlists",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"title\": \"Movie10\",\r\n        \"storyline\": \"Movie10 Story\",\r\n        \"active\": true,\r\n        \"platform\": \"2\",\r\n        \"imdb_rating\": 4.0,\r\n        \"episodes\": 0,\r\n        \"category\": \"MOVIE\"\r\n    },\r\n    {\r\n        \"title\": \"Series10\",\r\n        \"storyline\": \"Series10 Story\",\r\n        \"active\": true,\r\n        \"platform\": \"2\",\r\n        \"imdb_rating\": 4.0,\r\n        \"episodes\": 0,\r\n        \"category\": \"SERIES\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-list-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-list-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BaseSerializer",
+					"item": [
+						{
+							"name": "Get all Watchlists",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-base-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-base-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a new Watchlist",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"info\": {\r\n       \"extra\": \"data\"\r\n   },\r\n   \"resource\": {\r\n    \"title\": \"Movie71\",\r\n    \"storyline\": \"Movie7 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"Netflix\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n    }\r\n}\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-base-serializer/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-base-serializer",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GenericAPIView",
+					"item": [
+						{
+							"name": "ListModelMixin",
+							"item": [
+								{
+									"name": "Get all Watchlists using ListModelMixin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-cbv-try7/",
+											"host": [
+												"{{domain}}"
+											],
+											"path": [
+												"api",
+												"chapter6_serializers_views",
+												"watchlist-cbv-try7",
+												""
+											],
+											"query": [
+												{
+													"key": "ordering",
+													"value": "title",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "Movie3",
+													"disabled": true
+												},
+												{
+													"key": "search",
+													"value": "5",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "imdb_rating",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CreateModelMixin",
+							"item": [
+								{
+									"name": "Create a Watchlist using CreateModelMixin",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Movie2\",\r\n    \"storyline\": \"Movie2 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-create-model-mixin/",
+											"host": [
+												"{{domain}}"
+											],
+											"path": [
+												"api",
+												"chapter6_serializers_views",
+												"watchlist-create-model-mixin",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "RetrieveModelMixin",
+							"item": [
+								{
+									"name": "Get a single Watchlist using RetrieveModelMixin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-cbv-try9/1",
+											"host": [
+												"{{domain}}"
+											],
+											"path": [
+												"api",
+												"chapter6_serializers_views",
+												"watchlist-cbv-try9",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "UpdateModelMixin",
+							"item": [
+								{
+									"name": "Update Watchlist using UpdateModelMixin",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Movie1 updated\",\r\n    \"storyline\": \"Movie1 Updated Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-cbv-try10/1/",
+											"host": [
+												"{{domain}}"
+											],
+											"path": [
+												"api",
+												"chapter6_serializers_views",
+												"watchlist-cbv-try10",
+												"1",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "DestroyModelMixin",
+							"item": [
+								{
+									"name": "Destroy Watchlist using DestroyModelMixin",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Movie1 updated\",\r\n    \"storyline\": \"Movie1 Updated Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-destroy-model-mixin/67/",
+											"host": [
+												"{{domain}}"
+											],
+											"path": [
+												"api",
+												"chapter6_serializers_views",
+												"watchlist-destroy-model-mixin",
+												"67",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Watchlist by filtering title",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-detail-generic-api/Inception",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-detail-generic-api",
+										"Inception"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "Inception",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Watchlists",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-generic-api/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-generic-api",
+										""
+									],
+									"query": [
+										{
+											"key": "ordering",
+											"value": "title",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "Movie3",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "imdb_rating",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CreateAPIView",
+					"item": [
+						{
+							"name": "Create a Watchlist using CreateAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"The Shawshank Redemption\",\r\n    \"storyline\": \"The Shawshank Redemption Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 5,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-cbv-try12/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-cbv-try12",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ListAPIView",
+					"item": [
+						{
+							"name": "Get all Watchlists using ListAPIView",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-list-api/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-list-api",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RetrieveAPIView",
+					"item": [
+						{
+							"name": "GET api/watch/watchlist-cbv-try14/ using RetrieveAPIView",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-retrieve-api/Movie1 updated",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-retrieve-api",
+										"Movie1 updated"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DestroyAPIView",
+					"item": [
+						{
+							"name": "Delete Watchlist using DestroyAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-destroy-api/Series1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-destroy-api",
+										"Series1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UpdateAPIView",
+					"item": [
+						{
+							"name": "Update Watchlist using UpdateAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie2-updated\",\r\n    \"storyline\": \"Movie2-updated Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-update-api/80/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-update-api",
+										"80",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ListCreateAPIView",
+					"item": [
+						{
+							"name": "Get all Watchlists using ListCreateAPIView",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-list-create-api/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-list-create-api",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Watchlist using ListCreateAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie3\",\r\n    \"storyline\": \"Movie3 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-list-create-api/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-list-create-api",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RetrieveUpdateAPIView",
+					"item": [
+						{
+							"name": "Get Watchlist using RetrieveUpdateAPIView",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie2-updated2\",\r\n    \"storyline\": \"Movie2-updated2 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-retrieve-update-api/93/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-retrieve-update-api",
+										"93",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Watchlist using RetrieveUpdateAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie2-updated2\",\r\n    \"storyline\": \"Movie2-updated2 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-retrieve-update-api/93/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-retrieve-update-api",
+										"93",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Watchlist using RetrieveUpdateAPIView Patch",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-retrieve-update-api/93/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-retrieve-update-api",
+										"93",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RetrieveDestroyAPIView",
+					"item": [
+						{
+							"name": "Get Watchlist using RetrieveDestroyAPIView",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-retrieve-destroy-api/93/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-retrieve-destroy-api",
+										"93",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Watchlist using RetrieveDestroyAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-retrieve-destroy-api/93/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-retrieve-destroy-api",
+										"93",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RetrieveUpdateDestroyAPIView",
+					"item": [
+						{
+							"name": "Get Watchlist using RetrieveUpdateDestroyAPIView",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie2-updated2\",\r\n    \"storyline\": \"Movie2-updated2 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-rud-api/82/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-rud-api",
+										"82",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Watchlist using RetrieveUpdateDestroyAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie2-updated2\",\r\n    \"storyline\": \"Movie2-updated2 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-rud-api/82/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-rud-api",
+										"82",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Watchlist using RetrieveUpdateDestroyAPIView using Patch",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 2.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-rud-api/82/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-rud-api",
+										"82",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Watchlist using RetrieveUpdateDestroyAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-rud-api/82/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-rud-api",
+										"82",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MultipleFieldLookupMixin",
+					"item": [
+						{
+							"name": "Get Watchlist using MultipleFieldLookupMixin",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-mfl-mixin/Movie2-updated2",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-mfl-mixin",
+										"Movie2-updated2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Custom Base class for views",
+					"item": [
+						{
+							"name": "Get Watchlists using Custom Base class ListAPIView",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-inherited-list-api/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-inherited-list-api",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Watchlist using Custom Base class CreateAPIView",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Movie5\",\r\n    \"storyline\": \"Movie5 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlist-inherited-create-api/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlist-inherited-create-api",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "FunctionBasedViews",
+					"item": [
+						{
+							"name": "Get all Watchlists",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlists/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Watchlist",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"The Godfather\",\r\n    \"storyline\": \"The Godfather Story\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 9.2,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlists/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get single Watchlist",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{domain}}/api/chapter6_serializers_views/watchlists/85/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"chapter6_serializers_views",
+										"watchlists",
+										"85",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Chapter7_Viewsets_and_Routers",
+			"item": [
+				{
+					"name": "ROOT_URL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie5\",\r\n    \"storyline\": \"Movie5 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/watchlist-viewset/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie5\",\r\n    \"storyline\": \"Movie5 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"watchlist-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/watchlist-generic-viewset/watchlist_count",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Series2\",\r\n    \"storyline\": \"Series2 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 4.2,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"SERIES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-generic-viewset/watchlist_count",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"watchlist-generic-viewset",
+								"watchlist_count"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/watchlist-model-viewset/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie1 updated\",\r\n    \"storyline\": \"Movie1 Updated Story\",\r\n    \"active\": false,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 4.2,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"SERIES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-model-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"watchlist-model-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/watchlist-readonly-model-viewset",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie1 updated\",\r\n    \"storyline\": \"Movie1 Updated Story\",\r\n    \"active\": false,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 4.2,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"SERIES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-readonly-model-viewset/70/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"watchlist-readonly-model-viewset",
+								"70",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/watchlist-hlms-viewset/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie1 updated\",\r\n    \"storyline\": \"Movie1 Updated Story\",\r\n    \"active\": false,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 4.2,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"SERIES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/watchlist-hlms-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"watchlist-hlms-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/streamplatform-hlms-viewset/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie1 updated\",\r\n    \"storyline\": \"Movie1 Updated Story\",\r\n    \"active\": false,\r\n    \"platform\": \"1\",\r\n    \"imdb_rating\": 4.2,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"SERIES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-hlms-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-hlms-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET api/watch/streamplatform-viewset3/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/ get_watchlist action",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Netflix\",\r\n    \"about\": \"Netflix-updated2\",\r\n    \"website\": \"http://www.netflix.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/1/watchlist/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
+								"1",
+								"watchlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/ bulk_update action",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"Netflix\",\r\n        \"about\": \"Netflix-updated\",\r\n        \"website\": \"http://www.netflix.com\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"name\": \"Disneyplus\",\r\n        \"about\": \"Disnyplus About updated\",\r\n        \"website\": \"http://www.disneyplus.com\"\r\n    }\r\n\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/bulk-update/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
+								"bulk-update",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/ bulk_delete action",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 7\r\n    },\r\n    {\r\n        \"id\": 8\r\n    }\r\n\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/bulk-delete/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
+								"bulk-delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/streamplatform-model-viewset/{pk}/watchlist/ update_streamplatform action",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Netflix_U1\",\r\n    \"about\": \"Netflix-updated1\",\r\n    \"website\": \"http://www.netflix2.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-model-viewset/1/watchlist/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-model-viewset",
+								"1",
+								"watchlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/ using CustomRouter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/test1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-custom-viewset",
+								"test1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/streamplatform-custom-viewset get_watchlist action using CustomRouter",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Netflix\",\r\n    \"about\": \"Netflix-updated1\",\r\n    \"website\": \"http://www.netflix.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/test3/1/watchlist/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-custom-viewset",
+								"test3",
+								"1",
+								"watchlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter7_viewsets_routers/streamplatform-custom-viewset bulk_update action using CustomRouter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 9,\r\n        \"name\": \"Netflix\",\r\n        \"about\": \"Netflix-updated2\",\r\n        \"website\": \"http://www.netflix.com\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"name\": \"Disneyplus\",\r\n        \"about\": \"Disnyplus About updated2\",\r\n        \"website\": \"http://www.disneyplus.com\"\r\n    }\r\n\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter7_viewsets_routers/streamplatform-custom-viewset/test2/bulk-update/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter7_viewsets_routers",
+								"streamplatform-custom-viewset",
+								"test2",
+								"bulk-update",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter8_Validators",
+			"item": [
+				{
+					"name": "api/chapter8_validators/watchlist-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter8_validators/watchlist-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter8_validators",
+								"watchlist-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST api/chapter8_validators/watchlist-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"SERIES35\",\r\n    \"storyline\": \"Movie3 Story\",\r\n    \"active\": true,\r\n    \"platform\": \"2\",\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2022-07-15T10:08:42.690612Z\",\r\n    \"episodes\": null,\r\n    \"category\": \"SERIES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter8_validators/watchlist-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter8_validators",
+								"watchlist-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter8_validators/platform-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter8_validators/platform-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter8_validators",
+								"platform-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST api/chapter8_validators/platform-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Netflix4\",\r\n    \"about\": \"Netflix About\",\r\n    \"website\": \"https://www.netflix3.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter8_validators/platform-viewset1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter8_validators",
+								"platform-viewset1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter8_validators/review-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter8_validators/review-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter8_validators",
+								"review-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST api/chapter8_validators/review-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"review_user\": \"1\",\r\n    \"rating\": 4,\r\n    \"description\": \"good movie too\",\r\n    \"active\": true,\r\n    \"created\": \"2023-09-13T18:31:32.078801Z\",\r\n    \"update\": \"2023-09-13T18:31:32.078823Z\",\r\n    \"watchlist\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter8_validators/review-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter8_validators",
+								"review-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter9_Authentication",
+			"item": [
+				{
+					"name": "api/chapter9_authentication/watchlist-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter9_authentication/watchlist-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter9_authentication",
+								"watchlist-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter9_authentication/streamplatforms/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter9_authentication/streamplatforms/1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter9_authentication",
+								"streamplatforms",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{domain}}/api/chapter9_authentication/review-viewset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter9_authentication/review-viewset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter9_authentication",
+								"review-viewset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter9_authentication/streamplatforms/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter9_authentication/streamplatforms/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter9_authentication",
+								"streamplatforms",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Account Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test_user1\",\r\n    \"password\": \"test_password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/login/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Custom Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test_user1\",\r\n    \"password\": \"test_password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/user-login/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"user-login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Account Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "ganeshp6",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Seema@11",
+									"type": "text"
+								},
+								{
+									"key": "password2",
+									"value": "Seema@11",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ganeshp6@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/register/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test_user1\",\r\n    \"password\": \"test_password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/user-login/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"user-login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Custom Auth View",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Custom 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test_user1\",\r\n    \"password\": \"test_password1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/custom-auth/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"custom-auth",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter10_Permissions",
+			"item": [
+				{
+					"name": "api/chapter10_permissions/watchlist-allowany",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-allowany/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-allowany",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist-isauthenticated/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-isauthenticated/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-isauthenticated",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist-isauthenticatedorreadonly/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-isauthenticatedorreadonly/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-isauthenticatedorreadonly",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist-isauthenticatedadmin/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-adminuser/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-adminuser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "test_password1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "test_user1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie1 updated2\",\r\n    \"storyline\": \"Movie1 Updated Story\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2023-09-13T18:16:15.336340Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/stream_platform/",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "test_password1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "test_user1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/stream-platform",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"stream-platform"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/stream_platform/",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "test_password1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "test_user1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Netflix3\",\r\n    \"about\": \"Netflix About3\",\r\n    \"website\": \"https://www.netflix3.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/stream-platform",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"stream-platform"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/1/reviews",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "test_password1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "test_user1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/1/reviews",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/reviews/",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "test_password1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "test_user1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 3,\r\n    \"description\": \"good movie\",\r\n    \"active\": true,\r\n    \"created\": \"2023-09-13T18:31:32.078801Z\",\r\n    \"update\": \"2023-09-13T18:31:32.078823Z\",\r\n    \"review_date\": \"2023-09-16\",\r\n    \"review_user\": 1,\r\n    \"watchlist\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/reviews/1/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"reviews",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist-objectpermissionview/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 9ff355833a69cde9215752627e9f3ceda3265be7",
+								"description": "test_user2",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"description": "test_user1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview/49/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-objectpermissionview",
+								"49",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist-objectpermissionview/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"description": "test_user1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie1\",\r\n    \"storyline\": \"Movie1-Story\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-09-13T18:17:43.348311Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-objectpermissionview",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist-objectpermissionview/",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"description": "ganeshp",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie1\",\r\n    \"storyline\": \"Movie1-Story-update\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 2.0,\r\n    \"created\": \"2024-10-26T20:06:27.406145Z\",\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionview/49/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-objectpermissionview",
+								"49",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter10_permissions/watchlist-objectpermissionmapview/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"description": "test_user2",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"description": "test_user1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter10_permissions/watchlist-objectpermissionmapview/50/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter10_permissions",
+								"watchlist-objectpermissionmapview",
+								"50",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Account Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "test_user1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "test_password1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "ganeshp",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ganeshp",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "test_user2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "Ganesh@11",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/login/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter11_Caching",
+			"item": [
+				{
+					"name": "api/chapter11_caching/watchlist-caching/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-caching/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-caching",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-list",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-list",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-detail",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-list/49/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-list",
+								"49",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-lowlevelcaching",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-lowlevelcaching",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-lowlevelcaching"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-objectlevelcaching/49/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-objectlevelcaching/49/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-objectlevelcaching",
+								"49",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-cachemixinlist",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-cachemixinlist",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-cachemixinlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-cachemixinlist/49/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-cachemixinlist/49/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-cachemixinlist",
+								"49",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-varyonheadercache",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-varyonheadercache",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-varyonheadercache"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter11_caching/watchlist-varyoncookiecache",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter11_caching/watchlist-varyoncookiecache",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter11_caching",
+								"watchlist-varyoncookiecache"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter12_Throttling",
+			"item": [
+				{
+					"name": "api/chapter12_throttling/watchlist-throttling/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter12_throttling/watchlist-throttling/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter12_throttling",
+								"watchlist-throttling",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter12_throttling/streamplatform-throttling/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter12_throttling/streamplatform-throttling/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter12_throttling",
+								"streamplatform-throttling",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter12_throttling/review-throttling/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter12_throttling/streamplatform-throttling/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter12_throttling",
+								"streamplatform-throttling",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter12_throttling/watchlist-scopedratethrottle/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter12_throttling/watchlist-scopedratethrottle/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter12_throttling",
+								"watchlist-scopedratethrottle",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter12_throttling/watchlist-scopedratethrottle/ Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter12_throttling/watchlist-customthrottle/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter12_throttling",
+								"watchlist-customthrottle",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter13_filtering_searching_ordering",
+			"item": [
+				{
+					"name": "api/chapter13_filtering_searching_ordering/reviews/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/reviews/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist/49/reviews/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist/49/reviews/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist",
+								"49",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlists/49/reviews/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlists/50/reviews/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlists",
+								"50",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/reviews-query-params/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/reviews-query-params/?rating=5&start_date=2024-01-01&end_date=2024-11-17",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"reviews-query-params",
+								""
+							],
+							"query": [
+								{
+									"key": "rating",
+									"value": "5"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-11-17"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/reviews-generic-filter/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/reviews-query-params/?rating=5&start_date=2024-01-01&end_date=2024-11-17",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"reviews-query-params",
+								""
+							],
+							"query": [
+								{
+									"key": "rating",
+									"value": "5"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-11-17"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/reviews-overriding-queryset-filter/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/reviews-overriding-queryset-filter/?rating=3&active=true",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"reviews-overriding-queryset-filter",
+								""
+							],
+							"query": [
+								{
+									"key": "rating",
+									"value": "3"
+								},
+								{
+									"key": "active",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/reviews-search-filter/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist-search-filter/?search=story",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist-search-filter",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "story"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist-advanced-search/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist-advanced-search/?search=mov",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist-advanced-search",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "mov"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist-dynamic-search-field/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist-dynamic-search-field/?title_only=1&search=hol",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist-dynamic-search-field",
+								""
+							],
+							"query": [
+								{
+									"key": "title_only",
+									"value": "1"
+								},
+								{
+									"key": "search",
+									"value": "hol"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist-ordering/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist-ordering/?ordering=title",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist-ordering",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "title"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist-full-ordering/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist-full-ordering/?ordering=title",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist-full-ordering",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "title"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist-ordered/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist-ordered/?ordering=-imdb_rating",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist-ordered",
+								""
+							],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-imdb_rating"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist-ordered/ Copy",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/user-review-list/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"user-review-list",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter13_filtering_searching_ordering/watchlist-category-filter/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter13_filtering_searching_ordering/watchlist-category-filter/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter13_filtering_searching_ordering",
+								"watchlist-category-filter",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter14_pagination",
+			"item": [
+				{
+					"name": "api/chapter14_pagination/watchlist-pagenum-global-setting/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"The Matrix\",\r\n    \"storyline\": \"The Matrix-Story\",\r\n    \"active\": true,\r\n    \"imdb_rating\": 8.7,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\",\r\n    \"platform\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-pagenum-global-setting/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter14_pagination",
+								"watchlist-pagenum-global-setting",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter14_pagination/watchlist-pagenum-global-setting/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-pagenum-global-setting/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter14_pagination",
+								"watchlist-pagenum-global-setting",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter14_pagination/watchlist-pagenum-custom-setting/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-pagenum-custom-setting/?page_size=5",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter14_pagination",
+								"watchlist-pagenum-custom-setting",
+								""
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter14_pagination/watchlist-limit-offset/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-limit-offset/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter14_pagination",
+								"watchlist-limit-offset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter14_pagination/watchlist-cursor/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-cursor/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter14_pagination",
+								"watchlist-cursor",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter14_pagination/watchlist-custom-base/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-custom-base/?page=1&page_size=3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter14_pagination",
+								"watchlist-custom-base",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter14_pagination/watchlist-custom-pn/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter14_pagination/watchlist-custom-pn/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter14_pagination",
+								"watchlist-custom-pn",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter15_versioning",
+			"item": [
+				{
+					"name": "api/chapter15_versioning/v2/watchlist-urlpath/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter15_versioning/v1/watchlist-urlpath/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter15_versioning",
+								"v1",
+								"watchlist-urlpath",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v2/chapter15_versioning/watchlist-namespace",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/v2/chapter15_versioning/watchlist-namespace",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"chapter15_versioning",
+								"watchlist-namespace"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter15_versioning/watchlist-queryparam",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter15_versioning/watchlist-queryparam",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter15_versioning",
+								"watchlist-queryparam"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "1.0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter15_versioning/v1/watchlist-acceptheader/",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "accept",
+								"value": "application/json; version=2.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter15_versioning/watchlist-acceptheader/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter15_versioning",
+								"watchlist-acceptheader",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter15_versioning/watchlist-custom/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							},
+							{
+								"key": "X-API-Version",
+								"value": "2.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter15_versioning/watchlist-custom/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter15_versioning",
+								"watchlist-custom",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter16_testing",
+			"item": [
+				{
+					"name": "api/chapter16_testing/watchlists/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter16_testing/watchlists/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter16_testing",
+								"watchlists",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter16_testing/watchlist-external/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter16_testing/watchlist-external/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter16_testing",
+								"watchlist-external",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter16_testing/watchlist-external/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Movie4\",\r\n    \"storyline\": \"Movie4 Storyline\",\r\n    \"active\": true,\r\n    \"platform\": 1,\r\n    \"imdb_rating\": 2.0,\r\n    \"episodes\": 0,\r\n    \"category\": \"MOVIE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/chapter16_testing/watchlist-external/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter16_testing",
+								"watchlist-external",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter16_testing/stream-platforms/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter16_testing/stream-platforms/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter16_testing",
+								"stream-platforms",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter16_testing/reviews/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter16_testing/reviews/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter16_testing",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chapter17_documenting",
+			"item": [
+				{
+					"name": "api/chapter17_documenting/watchlists/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter17_documenting/c17-watchlists/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter17_documenting",
+								"c17-watchlists",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/chapter17_documenting/watchlists/",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 1ab5ed84e107537884ddb44089f24c1d40d11912",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/api/chapter17_documenting/c17-watchlists/50/",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"chapter17_documenting",
+								"c17-watchlists",
+								"50",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
